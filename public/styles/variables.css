@@ -1,0 +1,8 @@
+:root {
+	--primary-font-color: #1e1e1e;
+	--secondary-font-color: #ffffff;
+
+	--primary-background-color: #ffffff;
+	--primary-hightlight-color: #f0e6db;
+	--secondary-hightlight-color: var(--primary-font-color, #000);
+}

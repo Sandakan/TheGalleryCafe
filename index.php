@@ -1,3 +1,5 @@
+<?php require('config.php') ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +13,7 @@
 </head>
 
 <body>
-	<?php include('components/header_navigation_bar.php'); ?>
+	<?php require('components/header_navigation_bar.php'); ?>
 
 	<div class="hero">
 		<div class="hero-image-container"></div>
@@ -24,7 +26,7 @@
 
 	</div>
 
-	<?php include('components/footer.php'); ?>
+	<?php require('components/footer.php'); ?>
 </body>
 
 </html>

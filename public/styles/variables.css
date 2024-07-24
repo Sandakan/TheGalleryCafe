@@ -3,11 +3,15 @@
 	--secondary-font-color: #ffffff;
 
 	--primary-background-color: #f5f6fa;
-	--primary-hightlight-color: #f0e6db;
-	--secondary-hightlight-color: var(--primary-font-color, #000);
+	--primary-highlight-color: #f0e6db;
+	--secondary-highlight-color: var(--primary-font-color, #000);
 
 	/* BUTTONS */
 	--primary-button-font-color: var(--secondary-font-color);
 	--primary-button-background-color: var(--primary-font-color);
 	--primary-button-hover-background-color: #000;
+
+	/* BUTTONS */
+	--primary-link-font-color: var(--primary-font-color);
+	--primary-link-hover-font-color: #000;
 }

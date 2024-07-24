@@ -3,7 +3,7 @@ footer {
 	width: 100%;
 	min-height: 20rem;
 	bottom: 0;
-	background-color: var(--primary-hightlight-color);
+	background-color: var(--primary-highlight-color);
 	display: grid;
 	gap: 5rem;
 	grid-template-columns: 1fr 1fr;
@@ -44,7 +44,12 @@ footer > .footer-links-container {
 
 .footer-links-container > .link-block a {
 	font-size: 0.75rem;
-	color: var(--primary-font-color);
+	color: var(--primary-link-font-color);
+	transition: color 0.25s ease-in-out;
+}
+
+.footer-links-container > .link-block a:hover {
+	color: var(--primary-link-hover-font-color);
 }
 
 .footer-links-container > .link-block li {

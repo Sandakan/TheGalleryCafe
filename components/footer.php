@@ -4,17 +4,18 @@
 
         <div>
             <img src="<?php echo BASE_URL; ?>/public/images/logo.png" alt="logo" />
-            <p class="copyright-text">© 2024 The Gallery Café. All rights reserved.</p>
+            <p class="copyright-text">© 2024 The Gallery Café.</p>
         </div>
     </div>
     <div class="footer-links-container">
         <div class="link-block">
-            <h4>Support</h4>
+            <h4>Services</h4>
             <ul>
-                <li><a href="#">FAQs</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Locate</a></li>
-                <li><a href="#">Accessibility</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">Reservations</a></li>
+                <li><a href="#">Orders/ Takeaway</a></li>
+                <li><a href="#">Special Events</a></li>
+                <li><a href="#">Promotions</a></li>
             </ul>
         </div>
         <div class="link-block">
@@ -27,20 +28,12 @@
             </ul>
         </div>
         <div class="link-block">
-            <h4>Support</h4>
-            <li><a href="#">FAQs</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Locate</a></li>
-            <li><a href="#">Accessibility</a></li>
-            </ul>
-        </div>
-        <div class="link-block">
-            <h4>Support</h4>
+            <h4>Socials</h4>
             <ul>
-                <li><a href="#">FAQs</a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Locate</a></li>
-                <li><a href="#">Accessibility</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">Twitter</a></li>
             </ul>
         </div>
     </div>

@@ -56,6 +56,7 @@ body {
 	height: 100%;
 	padding: 2rem;
 	max-width: 50%;
+	gap: 1rem;
 }
 
 .hero > .hero-text-container > img {
@@ -72,11 +73,18 @@ body {
 .hero > .hero-text-container > p {
 	font-weight: 500;
 	font-size: 1.15rem;
-	margin: 1rem 0;
 }
 
 li:has(> a) {
 	list-style-type: none;
+}
+
+li > a {
+	text-decoration: none;
+}
+
+li > a:hover {
+	text-decoration: underline;
 }
 
 .hero-text-container > .join-us-btn {
@@ -93,48 +101,50 @@ li:has(> a) {
 .model {
 	width: 100%;
 	min-height: 30rem;
+	max-width: 80rem;
 	border-radius: 1rem;
-	border: 1px solid #000;
+	border: 2px solid #000;
 	/* padding: 2rem 1rem; */
 	/* box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
 	-webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
 	-moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25); */
 }
 
-.login-model {
+.login-model,
+.register-model {
 	width: 90%;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	/* gap: 2rem; */
 }
 
-.login-model > * {
+:is(.login-model, .register-model) > * {
 	padding: 2rem;
 }
 
-.login-model > .login-benefits-container {
-	border-right: 1px solid #000;
+.user-account-benefits-container {
+	border-right: 2px solid #000;
 }
 
-.login-model > .login-benefits-container > img {
+.user-account-benefits-container > img {
 	width: 8rem;
 }
 
-.login-benefits-container > .login-benefits-title {
+.user-account-benefits-container > .user-account-benefits-title {
 	font-weight: 600;
 	text-wrap: balance;
 	margin-top: 1rem;
 }
 
-.login-benefits-container > .login-benefits {
+.user-account-benefits-container > .user-account-benefits {
 	padding: 1rem 2rem;
 }
 
-.login-form {
-	/* padding: 1rem; */
+:is(.login-form, .register-form) > button[type='submit'] {
+	margin-top: 1rem;
 }
 
-.login-form > h1 {
+:is(.login-form, .register-form) > h1 {
 	font-size: 2.5rem;
 	font-weight: 600;
 	margin-bottom: 1rem;
@@ -146,6 +156,12 @@ li:has(> a) {
 	margin-bottom: 1rem;
 }
 
+.input-group-container {
+	display: grid;
+	grid-auto-flow: column;
+	gap: 1rem;
+}
+
 .input-container > label {
 	font-weight: 500;
 	margin-bottom: 0.5rem;
@@ -154,7 +170,9 @@ li:has(> a) {
 .input-container > input {
 	padding: 0.75rem 1rem;
 	border-radius: 0.5rem;
-	border: 1px solid #000;
+	border: 2px solid #000;
+	background-color: var(--primary-background-color);
+	backdrop-filter: blur(0.75);
 }
 
 .login-form > .input-container > .forget-password-link-container {
@@ -166,7 +184,11 @@ li:has(> a) {
 	font-size: 0.9rem;
 	font-weight: 500;
 	color: var(--primary-button-background-color);
+	text-decoration: none;
 	padding: 0.5rem 0;
+}
+:is(.forget-password-link-container, .create-account-link-container) > a:hover {
+	text-decoration: underline;
 }
 
 .create-account-link-container {

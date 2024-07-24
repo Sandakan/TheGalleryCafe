@@ -22,6 +22,8 @@
 			<img src="public/images/logo.png" alt="logo" />
 			<h1>A gallery of <br> memorable taste</h1>
 			<p>A place where friends gather, families celebrate, and visitors get a taste of Sri Lanka's rich cultural heritage.</p>
+
+			<a class="btn-primary join-us-btn" href="./pages/auth/login.php">Join With Us</a>
 		</div>
 
 	</div>

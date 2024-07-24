@@ -19,11 +19,11 @@ footer > .footer-info-container {
 
 footer > .footer-info-container img {
 	width: 5rem;
+	padding: 0.75rem;
 }
 
 footer > .footer-info-container p.info-text {
 	font-size: 1rem;
-	/* line-height: 1.25; */
 	font-weight: 400;
 }
 

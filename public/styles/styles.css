@@ -1,7 +1,10 @@
-/* Imported navbar here because it's used in multiple places */
-@import url('./navbar.css');
+/* ? Imported because it's used in multiple places */
 @import url('./variables.css');
 @import url('./footer.css');
+
+/* ? COMPONENT SPECIFIC IMPORTS */
+@import url('./navbar.css');
+@import url('./buttons.css');
 
 * {
 	margin: 0;
@@ -16,14 +19,16 @@ html {
 }
 
 body {
+	min-height: 100vh;
 	position: relative;
-	background-color: var(--background-color, #fff);
+	background-color: var(--primary-background-color, #fff);
 	color: var(--primary-font-color, #000);
+	/* overflow-x: hidden; */
 }
 
 .hero {
 	width: 100%;
-	height: 90vh;
+	height: 85vh;
 	min-height: 45rem;
 	position: relative;
 	padding-top: 4rem;
@@ -72,4 +77,98 @@ body {
 
 li:has(> a) {
 	list-style-type: none;
+}
+
+.hero-text-container > .join-us-btn {
+	margin-top: 1rem;
+}
+
+.model-container {
+	padding: 2.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.model {
+	width: 100%;
+	min-height: 30rem;
+	border-radius: 1rem;
+	border: 1px solid #000;
+	/* padding: 2rem 1rem; */
+	/* box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+	-webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25); */
+}
+
+.login-model {
+	width: 90%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	/* gap: 2rem; */
+}
+
+.login-model > * {
+	padding: 2rem;
+}
+
+.login-model > .login-benefits-container {
+	border-right: 1px solid #000;
+}
+
+.login-model > .login-benefits-container > img {
+	width: 8rem;
+}
+
+.login-benefits-container > .login-benefits-title {
+	font-weight: 600;
+	text-wrap: balance;
+	margin-top: 1rem;
+}
+
+.login-benefits-container > .login-benefits {
+	padding: 1rem 2rem;
+}
+
+.login-form {
+	/* padding: 1rem; */
+}
+
+.login-form > h1 {
+	font-size: 2.5rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+
+.input-container {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1rem;
+}
+
+.input-container > label {
+	font-weight: 500;
+	margin-bottom: 0.5rem;
+}
+
+.input-container > input {
+	padding: 0.75rem 1rem;
+	border-radius: 0.5rem;
+	border: 1px solid #000;
+}
+
+.login-form > .input-container > .forget-password-link-container {
+	display: flex;
+	justify-content: flex-end;
+}
+
+:is(.forget-password-link-container, .create-account-link-container) > a {
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: var(--primary-button-background-color);
+	padding: 0.5rem 0;
+}
+
+.create-account-link-container {
+	margin-top: 3rem;
 }

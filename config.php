@@ -1,2 +1,2 @@
 <?php
-define('BASE_URL', 'http://localhost/TheGalleryCafe/');
+define('BASE_URL', 'http://localhost/TheGalleryCafe');

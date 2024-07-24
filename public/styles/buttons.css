@@ -1,0 +1,19 @@
+.btn-primary {
+	width: fit-content;
+	cursor: pointer;
+	background-color: var(--primary-button-background-color);
+	color: var(--primary-button-font-color, #000);
+	font-weight: 500;
+	font-size: 1rem;
+	padding: 1rem 2.5rem;
+	border-radius: 10rem;
+	transition: all 0.25s ease-in-out;
+}
+
+.btn-primary:hover {
+	background-color: var(--primary-button-hover-background-color);
+}
+
+a.btn-primary {
+	text-decoration: none;
+}

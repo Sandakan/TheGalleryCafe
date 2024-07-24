@@ -21,7 +21,7 @@ experience.
   - Verify whether the `TheGalleryCafé` project appears in the list of projects
   - Open the `TheGalleryCafé` project in the WAMP server dashboard by clicking on the `TheGalleryCafé` project name.
 
-> [!IMPORTANT] Ensure the `BASE_URL` variable in the `config.php` file is set to the correct URL. This is required for
-> the static files to appear correctly in the browser. For example, if the URL to the `index.php` file on your browser's
-> address bar is `http://localhost/TheGalleryCafe/index.php`, then the BASE_URL would be
-> `http://localhost/TheGalleryCafe/`.
+> [!IMPORTANT]  
+> Ensure the `BASE_URL` variable in the `config.php` file is set to the correct URL. This is required for the static
+> files to appear correctly in the browser. For example, if the URL to the `index.php` file on your browser's address
+> bar is `http://localhost/TheGalleryCafe/index.php`, then the BASE_URL would be `http://localhost/TheGalleryCafe`.

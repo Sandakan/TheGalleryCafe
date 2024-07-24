@@ -5,13 +5,16 @@ nav {
 	align-items: center;
 	height: 6rem;
 	/* border: 1px solid black; */
-	position: absolute;
+	position: sticky;
 	top: 0;
-	overflow: hidden;
-	background-color: transparent;
+	background-color: hsla(0, 0%, 100%, 0.75);
 	z-index: 5;
 	padding: 0 0.5rem;
 	transition: background-color 0.5s ease;
+	/* box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+	-webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25); */
+	backdrop-filter: blur(1rem);
 }
 
 nav.blurred-background {
@@ -27,6 +30,7 @@ nav.blurred-background {
 
 .logo-container > img {
 	width: 5rem;
+	padding: 0.75rem;
 }
 
 .logo-container > h1 {

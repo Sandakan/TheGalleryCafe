@@ -10,7 +10,7 @@ nav {
 	background-color: var(--primary-background-color);
 	z-index: 5;
 	padding: 0 0.5rem;
-	transition: background-color 0.5s ease;
+	/* transition: background-color 0.5s ease; */
 }
 
 nav.blurred-background {
@@ -42,6 +42,7 @@ nav.blurred-background {
 
 .nav-links {
 	display: flex;
+	align-items: center;
 	gap: 0.5rem;
 	padding: 0 1rem;
 }
@@ -52,20 +53,41 @@ nav.blurred-background {
 	border: 2px solid transparent;
 	padding: 0.25rem 0.75rem;
 	border-radius: 0.5rem;
-	transition: border-color 0.25s ease;
+	transition: border-color, background-color 0.25s ease;
 	color: var(--primary-font-color, #000);
 }
 
 .nav-links > li.active {
+	background-color: transparent !important;
+	border-radius: 0;
+	border-bottom: 2px solid black;
+}
+
+.nav-links > li:has(> a.login-register-btn) {
 	background-color: var(--secondary-highlight-color, #000);
 	color: var(--secondary-font-color, #fff);
+	padding: 0.5rem 1rem;
+	border-radius: 5rem;
+}
+
+.nav-links > li:has(> a.logged-user-btn) {
+	background-color: var(--primary-background-color) !important;
+	border-radius: 5rem;
+}
+
+.nav-links > li > a.logged-user-btn {
+	text-decoration: none;
 }
 
 .nav-links > li:hover {
-	border: 2px solid black;
+	background-color: var(--primary-background-color);
 }
 
 .nav-links > li > a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
 	text-decoration: none;
 	font-weight: 500;
 	color: inherit;

@@ -1,4 +1,7 @@
-<?php require('config.php') ?>
+<?php
+require('config.php');
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +9,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Document</title>
+	<title>Home - The Gallery Cafe</title>
 	<link rel="stylesheet" href="public/styles/styles.css">
 	<link rel="stylesheet" href="public/styles/fonts.css">
 	<link rel="shortcut icon" href="public/images/logo.png" type="image/x-icon">
@@ -23,7 +26,7 @@
 			<h1>A gallery of <br> memorable taste</h1>
 			<p>A place where friends gather, families celebrate, and visitors get a taste of Sri Lanka's rich cultural heritage.</p>
 
-			<a class="btn-primary join-us-btn" href="./pages/auth/login.php">Join With Us</a>
+			<a class="btn-primary join-us-btn" href="./pages/auth/register.php">Join With Us</a>
 		</div>
 
 	</div>

@@ -1,0 +1,59 @@
+.login-model,
+.register-model {
+	width: 90%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	/* gap: 2rem; */
+}
+
+:is(.login-model, .register-model) > * {
+	padding: 2rem;
+}
+
+.user-account-benefits-container {
+	border-right: 1px solid #000;
+}
+
+.user-account-benefits-container > img {
+	width: 8rem;
+}
+
+.user-account-benefits-container > .user-account-benefits-title {
+	font-weight: 600;
+	text-wrap: balance;
+	margin-top: 1rem;
+}
+
+.user-account-benefits-container > .user-account-benefits {
+	padding: 1rem 2rem;
+}
+
+:is(.login-form, .register-form) > button[type='submit'] {
+	margin-top: 1rem;
+}
+
+:is(.login-form, .register-form) > h1 {
+	font-size: 2.5rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+
+.login-form > .input-container > .forget-password-link-container {
+	display: flex;
+	justify-content: flex-end;
+}
+
+:is(.forget-password-link-container, .create-account-link-container) > a {
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: var(--primary-button-background-color);
+	text-decoration: none;
+	padding: 0.5rem 0;
+}
+:is(.forget-password-link-container, .create-account-link-container) > a:hover {
+	text-decoration: underline;
+}
+
+.create-account-link-container {
+	margin-top: 3rem;
+}

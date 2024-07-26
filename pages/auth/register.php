@@ -98,38 +98,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="input-container">
                         <label for="first_name">First Name *</label>
                         <input type="text" name="first_name" id="first_name" placeholder="John" required />
-                        <span class="error-message"> <?php echo $first_name_error; ?></span>
+                        <span class="error-message"><?php echo $first_name_error; ?></span>
                     </div>
 
                     <div class="input-container">
                         <label for="last_name">Last Name *</label>
                         <input type="text" name="last_name" id="last_name" placeholder="Doe" required />
-                        <span class="error-message"> <?php echo $last_name_error; ?></span>
+                        <span class="error-message"><?php echo $last_name_error; ?></span>
                     </div>
                 </div>
 
                 <div class="input-container">
                     <label for="email">Email *</label>
                     <input type="email" name="email" id="email" placeholder="johndoe@example.com" required />
-                    <span class="error-message"> <?php echo $email_error; ?></span>
+                    <span class="error-message"><?php echo $email_error; ?></span>
                 </div>
 
                 <div class="input-container">
                     <label for="contact_number">Contact Number *</label>
                     <input type="tel" name="contact_number" id="contact_number" placeholder="+94 712 345 678" required />
-                    <span class="error-message"> <?php echo $contact_number_error; ?></span>
+                    <span class="error-message"><?php echo $contact_number_error; ?></span>
                 </div>
 
                 <div class="input-container">
                     <label for="password">Password *</label>
                     <input type="password" name="password" id="password" placeholder="MySuperSecretPassword" required />
-                    <span class="error-message"> <?php echo $password_error; ?></span>
+                    <span class="error-message"><?php echo $password_error; ?></span>
                 </div>
 
                 <div class="input-container">
                     <label for="confirm_password">Confirm Password *</label>
                     <input type="password" name="confirm_password" id="confirm_password" placeholder="MySuperSecretPassword" required />
-                    <span class="error-message"> <?php echo $password_error; ?></span>
+                    <span class="error-message"><?php echo $password_error; ?></span>
                 </div>
 
                 <button class="btn-primary form-submit-btn" type="submit">Register</button>

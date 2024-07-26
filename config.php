@@ -1,5 +1,5 @@
 <?php
-define('BASE_URL', 'http://localhost/TheGalleryCafe');
+define('BASE_URL', 'http://localhost:80/TheGalleryCafe');
 
 // Database credentials
 define('DATABASE_HOST_NAME', 'localhost');

@@ -32,7 +32,7 @@ function getFullUrl()
 						account_circle
 					</span> <span><?php echo $_SESSION['user_first_name']; ?></span></a>
 			<?php else : ?>
-				<a class="login-register-btn" href="<?php echo BASE_URL; ?>/pages/auth/login.php">Login/Register</a>
+				<a class="login-register-btn" href="<?php echo BASE_URL; ?>/pages/auth/login.php">Login / Signup</a>
 			<?php endif; ?>
 		</li>
 

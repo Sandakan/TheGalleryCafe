@@ -5,10 +5,10 @@ footer {
 	bottom: 0;
 	background-color: var(--primary-highlight-color);
 	display: grid;
-	gap: 5rem;
+	gap: 7.5rem;
 	grid-template-columns: 1fr 1fr;
 	padding: 2.5rem;
-	margin-top: 5rem;
+	margin-top: 2.5rem;
 }
 
 footer > .footer-info-container {

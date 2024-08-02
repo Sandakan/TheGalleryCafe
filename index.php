@@ -66,7 +66,7 @@ $conn = initialize_database();
 
 			<?php require('components/menu_item.php');
 
-			$sql = "SELECT id, name, description, price, image FROM menu_item";
+			$sql = "SELECT id, name, description, price, image FROM menu_item WHERE menu_item.type = 'SPECIAL'";
 
 			$result = mysqli_query($conn, $sql);
 			if (mysqli_num_rows($result) > 0) {

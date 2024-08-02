@@ -2,6 +2,7 @@
 	overflow: hidden;
 	display: grid;
 	grid-template-columns: 40% 60%;
+	max-height: 40rem;
 }
 
 .menu-item-model > .menu-item-image-container {

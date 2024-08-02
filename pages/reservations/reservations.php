@@ -62,7 +62,30 @@ if (!isset($_SESSION["user_id"])) {
 
                     <div class="input-container">
                         <label for="reservation_date">Reservation Date *</label>
-                        <input type="date" name="reservation_date" id="reservation_date" placeholder="<?php echo date("Y-m-d") ?>" required />
+                        <select type="text" name="reservation_date" id="reservation_date" placeholder="Select your preferred reservation date" required>
+                            <option value="" selected disabled>Select your preferred reservation date</option>
+                            <option value="1">9:30 AM</option>
+                            <option value="2">10:00 AM</option>
+                            <option value="3">10:30 AM</option>
+                            <option value="4">11:00 AM</option>
+                            <option value="5">11:30 AM</option>
+                            <option value="6">12:00 PM</option>
+                            <option value="7">12:30 PM</option>
+                            <option value="8">1:00 PM</option>
+                            <option value="9">1:30 PM</option>
+                            <option value="9">2:00 PM</option>
+                            <option value="9">2:30 PM</option>
+                            <option value="9">3:00 PM</option>
+                            <option value="9">3:30 PM</option>
+                            <option value="9">4:00 PM</option>
+                            <option value="7">4:30 PM</option>
+                            <option value="8">5:00 PM</option>
+                            <option value="9">5:30 PM</option>
+                            <option value="9">6:00 PM</option>
+                            <option value="9">6:30 PM</option>
+                            <option value="9">7:00 PM</option>
+                            <option value="9">7:30 PM</option>
+                        </select>
                     </div>
 
                     <div class="input-container">

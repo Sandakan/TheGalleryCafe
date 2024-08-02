@@ -1,0 +1,113 @@
+.cart-info-container {
+	width: 100%;
+	max-width: 80rem;
+}
+
+.cart-info-container > h1 {
+	width: 100%;
+	font-weight: 600;
+	font-size: 3rem;
+}
+
+.cart-model {
+	padding: 2rem;
+}
+
+.cart-table {
+	table-layout: fixed;
+	width: 100%;
+	border-collapse: collapse;
+	/* border: 1px solid #000; */
+	border-radius: 1rem;
+	/* overflow: hidden; */
+}
+
+.cart-table > thead {
+	background-color: var(--primary-highlight-color);
+}
+
+.cart-table :is(thead > tr > th:first-child, tbody > tr > td:first-child) {
+	text-align: start;
+}
+
+.cart-table > thead th {
+	font-weight: 600;
+	font-size: 1rem;
+}
+
+.cart-table > thead th:first-child {
+	width: 50%;
+}
+
+.cart-table :is(td, th) {
+	/* to fix table cell collapse issues when having flex cells */
+	/* Fix by Håkan Save Hansson. https://codepen.io/savehansson/pen/DmxyEP */
+	box-shadow: 1px 0 0 0 #000, 0 1px 0 0 #000, 1px 1px 0 0 #000, /* Just to fix the corner */ 1px 0 0 0 #000 inset,
+		0 1px 0 0 #000 inset;
+	text-align: right;
+	padding: 0.5rem;
+}
+
+.cart-table td > img {
+	width: 3rem;
+	aspect-ratio: 1/1;
+	object-fit: cover;
+	border: 1px solid #000;
+	margin-right: 1rem;
+}
+
+.cart-table td:has(img) {
+	display: flex;
+	align-items: center;
+}
+
+.cart-table > tfoot {
+	background-color: var(--primary-highlight-color);
+}
+
+.cart-table > tfoot td {
+	font-weight: 600;
+	font-size: 1.25rem;
+	padding: 1rem;
+}
+
+tr.no-items-in-cart > td {
+	text-align: center !important;
+	padding: 5rem 0;
+}
+
+.cart-model > button {
+	margin-top: 2rem;
+	float: right;
+}
+
+.cart-items-incrementing-actions-container {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	justify-content: end;
+}
+
+.cart-items-incrementing-actions-container > .btn-secondary {
+	width: 2rem !important;
+	height: 2rem !important;
+	padding: 0;
+	font-size: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.cart-items-incrementing-actions-container > .selected-item-count {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 10rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	border: 1px solid #000;
+	font-weight: 500;
+	font-size: 1rem;
+	text-align: center;
+}

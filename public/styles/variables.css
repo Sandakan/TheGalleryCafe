@@ -2,7 +2,8 @@
 	--primary-font-color: #1e1e1e;
 	--secondary-font-color: #ffffff;
 
-	--primary-background-color: #f5f6fa;
+	/* --primary-background-color: #f5f6fa; */
+	--primary-background-color: #fff;
 	--primary-highlight-color: #f0e6db;
 	--secondary-highlight-color: var(--primary-font-color, #000);
 

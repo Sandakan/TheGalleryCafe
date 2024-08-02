@@ -43,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 $_SESSION["user_id"] = $row["id"];
                 $_SESSION["user_first_name"] = $row["first_name"];
+                $_SESSION["user_last_name"] = $row["last_name"];
 
 
                 if (isset($redirect)) {
@@ -50,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     header("Location: " . $redirectUrl);
                 } else {
                     echo "<script>console.log('" . addslashes($_GET['redirect']) . "');</script>";
-                    header("Location: " . BASE_URL . "/index.php");
+                    header("Location: " . addslashes($_GET['redirect']));
                 }
                 exit();
             }
@@ -80,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="model-container login-model-container">
         <div class="model login-model">
             <?php include('../../components/user_account_benefits.php'); ?>
-            <form class="login-form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <form class="login-form" method="POST" action="<?php echo htmlspecialchars($_SERVER["REQUEST_URI"]); ?>">
                 <h1>Welcome back...</h1>
 
                 <div class="input-container">

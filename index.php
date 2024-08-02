@@ -1,6 +1,9 @@
 <?php
 require('config.php');
+require('./utils/database.php');
 session_start();
+
+$conn = initialize_database();
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +16,7 @@ session_start();
 	<link rel="stylesheet" href="public/styles/styles.css">
 	<link rel="stylesheet" href="public/styles/fonts.css">
 	<link rel="stylesheet" href="public/styles/home.css">
+	<link rel="stylesheet" href="public/styles/menu.css">
 	<link rel="shortcut icon" href="public/images/logo.png" type="image/x-icon">
 </head>
 
@@ -58,14 +62,21 @@ session_start();
 			<h3>Featured Menus</h3>
 			<p>Whether you're in the mood for a hearty breakfast, a leisurely lunch, or an exquisite dinner, our featured menus offer something to satisfy every palate. Join us and savor the exceptional cuisine that defines The Gallery Café experience.</p>
 		</div>
-		<div class="featured-menus">
+		<div class="featured-menus menus">
 
 			<?php require('components/menu_item.php');
 
-			for ($i = 0; $i < 10; $i++) {
-				echo renderMenuItem('Black Cookie Latte', '1200.00', BASE_URL . '/public/images/black-cookie-latte.jpg');
+			$sql = "SELECT id, name, description, price, image FROM menu_item";
+
+			$result = mysqli_query($conn, $sql);
+			if (mysqli_num_rows($result) > 0) {
+				// Loop through each result and display in table rows
+				while ($row = mysqli_fetch_assoc($result)) {
+					echo renderMenuItem(intval($row['id']), $row['name'], $row['price'], BASE_URL . '/public/images/menu-items/' . $row['image']);
+				}
 			}
 			?>
+		</div>
 	</section>
 
 	<?php require('components/footer.php'); ?>

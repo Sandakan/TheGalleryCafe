@@ -11,8 +11,9 @@
         <div class="link-block">
             <h4>Services</h4>
             <ul>
-                <li><a href="#">Menu</a></li>
+                <li><a href="<?php echo BASE_URL; ?>/pages/reservations/menu.php">Menu</a></li>
                 <li><a href="<?php echo BASE_URL; ?>/pages/reservations/reservations.php">Reservations</a></li>
+                <li><a href="<?php echo BASE_URL; ?>/pages/cart/cart.php">Cart</a></li>
                 <li><a href="#">Orders/ Takeaway</a></li>
                 <li><a href="#">Special Events</a></li>
                 <li><a href="#">Promotions</a></li>

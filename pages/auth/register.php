@@ -9,9 +9,8 @@ if (isset($_SESSION["user_id"])) {
     header("Location: " . BASE_URL . "/index.php");
 }
 
-// define variables and set to empty values
-$first_name = $last_name = $email = $contact_number = $retype_password = $password = "";
-$first_name_error = $last_name_error = $email_error = $contact_number_error = $retype_password_error = $password_error = "";
+$first_name = $last_name = $email = $contact_number = $confirm_password = $password = "";
+$first_name_error = $last_name_error = $email_error = $contact_number_error = $confirm_password_error = $password_error = "";
 $is_error = false;
 
 function test_input($data)
@@ -48,8 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $password = test_input($_POST["password"]);
-    $retype_password = test_input($_POST["retype_password"]);
-    if (!empty($_POST["password"]) && !empty($_POST["retype_password"]) && $password != $retype_password) {
+    $confirm_password = test_input($_POST["confirm_password"]);
+    if (!empty($_POST["password"]) && !empty($_POST["confirm_password"]) && $password != $confirm_password) {
         $password_error = "Passwords do not match";
         $is_error = true;
     }
@@ -61,6 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_query($conn, $query)) {
             $new_user_id = mysqli_insert_id($conn);
             $_SESSION["user_id"] = $new_user_id;
+            $_SESSION["user_first_name"] = $first_name;
+            $_SESSION["user_last_name"] = $last_name;
 
             header("Location: " . BASE_URL . "/index.php");
             exit();
@@ -129,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="input-container">
                     <label for="confirm_password">Confirm Password *</label>
                     <input type="password" name="confirm_password" id="confirm_password" placeholder="MySuperSecretPassword" required />
-                    <span class="error-message"><?php echo $password_error; ?></span>
+                    <span class="error-message"><?php echo $confirm_password_error; ?></span>
                 </div>
 
                 <button class="btn-primary form-submit-btn" type="submit">Register</button>

@@ -46,13 +46,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["user_last_name"] = $row["last_name"];
 
 
-                if (isset($redirect)) {
+                if (isset($_GET['redirect'])) {
                     $redirectUrl = urldecode($_GET['redirect']);
                     header("Location: " . $redirectUrl);
-                } else {
-                    echo "<script>console.log('" . addslashes($_GET['redirect']) . "');</script>";
-                    header("Location: " . addslashes($_GET['redirect']));
-                }
+                } else
+                    header("Location: " . BASE_URL . "/index.php");
+
                 exit();
             }
         } else {

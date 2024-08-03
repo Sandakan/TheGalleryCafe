@@ -69,7 +69,9 @@ $sql = <<< SQL
     WHERE
         c.user_id = 1 
         AND c.deleted_at IS NULL 
-        AND ci.deleted_at IS NULL;
+        AND ci.deleted_at IS NULL
+    ORDER BY
+        ci.created_at ASC;
 SQL;
 
 $result = mysqli_query($conn, $sql);

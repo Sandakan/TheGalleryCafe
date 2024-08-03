@@ -99,6 +99,11 @@ li > a:hover {
 	font-size: 0.75rem;
 }
 
+.input-container > small {
+	font-size: 0.75rem;
+	margin-top: 0.5rem;
+}
+
 :is(input, select):has(+ .error-message:not(:empty)) {
 	border: 2px solid red;
 }

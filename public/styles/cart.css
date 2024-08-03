@@ -53,6 +53,7 @@
 	aspect-ratio: 1/1;
 	object-fit: cover;
 	border: 1px solid #000;
+	border-radius: 0.25rem;
 	margin-right: 1rem;
 }
 
@@ -76,6 +77,13 @@ tr.no-items-in-cart > td {
 	padding: 5rem 0;
 }
 
+tbody > tr {
+	transition: background 0.25s ease-in-out;
+}
+tbody > tr:hover {
+	background-color: var(--primary-highlight-color);
+}
+
 .cart-model > button {
 	margin-top: 2rem;
 	float: right;
@@ -96,6 +104,10 @@ tr.no-items-in-cart > td {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+.cart-items-incrementing-actions-container > .btn-secondary > .delete-icon {
+	font-weight: 300;
+	font-size: 1.25rem;
 }
 
 .cart-items-incrementing-actions-container > .selected-item-count {

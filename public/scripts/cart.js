@@ -9,3 +9,16 @@ function changeCartItemQuantity(cartItemId, currentQuantity, incrementingValue) 
 		location.reload();
 	});
 }
+
+function confirmOrder(cartId) {
+	// alert(cartId);
+	fetch(`cart.php`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		body: `reason=confirm_order&cart_id=${cartId}`,
+	}).then(async (response) => {
+		location.reload();
+	});
+}

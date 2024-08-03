@@ -15,6 +15,7 @@ if (!isset($_SESSION["user_id"])) {
 $user_id = $_SESSION["user_id"];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     if ($_POST['reason'] == 'change_item_quantity') {
         $item_id = $_POST['cart_item_id'];
         $current_quantity = $_POST['current_quantity'];
@@ -36,7 +37,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else echo "<script>alert('Failed to remove item from cart: " . mysqli_error($conn) . "');</script>";
         }
     }
+
+    if ($_POST['reason'] == 'confirm_order') {
+        $totalAmount = 0.00;
+
+        // create a new order
+        $q1 = "INSERT INTO `order` (user_id, total_amount) VALUES ($user_id, $totalAmount)";
+        if (mysqli_query($conn, $q1)) {
+            $orderId = mysqli_insert_id($conn);
+
+            $cartId = $_POST['cart_id'];
+            // fetch current cart items
+            $q2 = "SELECT * FROM cart_item INNER JOIN menu_item ON cart_item.menu_item_id = menu_item.id WHERE cart_id = $cartId AND cart_item.deleted_at IS NULL";
+            $result = mysqli_query($conn, $q2);
+
+            while ($row = mysqli_fetch_assoc($result)) {
+                $menuItemId = $row['menu_item_id'];
+                $quantity = $row['quantity'];
+                $price = $row['price'];
+
+                // add each cart item to the order as a new order item
+                $q = "INSERT INTO order_item (order_id, menu_item_id, quantity) VALUES ($orderId, $menuItemId, $quantity)";
+                mysqli_query($conn, $q);
+
+                $totalAmount += $price * $quantity;
+            }
+
+            // update order with the new total amount
+            $q3 = "UPDATE `order` SET total_amount = $totalAmount WHERE id = $orderId";
+            if (mysqli_query($conn, $q3)) {
+
+                // delete cart
+                $q4 = "UPDATE cart SET deleted_at = NOW() WHERE id = $cartId AND deleted_at IS NULL";
+                if (mysqli_query($conn, $q4)) {
+                    echo "<script>alert('Order created successfully!');</script>";
+                } else echo "<script>alert('Failed to delete cart: " . mysqli_error($conn) . "');</script>";
+            } else echo "<script>alert('Failed to create order: " . mysqli_error($conn) . "');</script>";
+        } else echo "<script>alert('Failed to create order: " . mysqli_error($conn) . "');</script>";
+    }
 }
+
 
 $sql = <<< SQL
     SELECT
@@ -77,6 +117,7 @@ SQL;
 $result = mysqli_query($conn, $sql);
 $cart_items_count = mysqli_num_rows($result);
 $total_cart_price = 0.00;
+$cart_id;
 
 function renderCartItem($row)
 {
@@ -88,7 +129,7 @@ function renderCartItem($row)
     $menu_item_total_price = $row['total_price'];
     $menu_item_image = BASE_URL . '/public/images/menu-items/' . $row['image'];
 
-    $removeButton = $menu_item_quantity == 1 ? "<span class='material-symbols-rounded delete'>delete</span>" : "<span class='material-symbols-rounded'>remove</span>";
+    $removeButton = $menu_item_quantity == 1 ? "<span class='material-symbols-rounded delete-icon'>delete</span>" : "<span class='material-symbols-rounded'>remove</span>";
     echo <<< HTML
      <tr>
         <td><img src="$menu_item_image" /><span>$menu_item_name</span></td>
@@ -147,6 +188,7 @@ function renderCartItem($row)
 
                     if ($cart_items_count > 0) {
                         while ($row = mysqli_fetch_assoc($result)) {
+                            $cart_id = $row['cart_id'];
                             $total_cart_price += $row['total_price'];
                             renderCartItem($row);
                         }
@@ -172,7 +214,7 @@ function renderCartItem($row)
             </table>
 
             <?php if ($cart_items_count > 0) { ?>
-                <button class="btn btn-primary">Continue to Checkout</button>
+                <button class="btn btn-primary" onclick="confirmOrder(<?= $cart_id ?>)">Confirm Order</button>
             <?php } ?>
         </div>
     </div>

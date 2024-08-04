@@ -83,7 +83,7 @@ mysqli_close($conn);
     <link rel="stylesheet" href="<?= BASE_URL ?>/public/styles/styles.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/public/styles/fonts.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/public/styles/menu-item.css">
-    <link rel="shortcut icon" href="<?= BASE_URL ?>/public/images/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= BASE_URL ?>/public/images/logo.webp" type="image/x-icon">
 </head>
 
 <body>

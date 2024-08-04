@@ -33,7 +33,7 @@ function displayMenuItems(string $menu_id, $conn)
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/styles/styles.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/styles/fonts.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/styles/menu.css">
-    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>/public/images/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>/public/images/logo.webp" type="image/x-icon">
 </head>
 
 <body>

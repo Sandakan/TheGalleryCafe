@@ -9,7 +9,7 @@
 .hero > .hero-image-container {
 	position: absolute;
 	inset: 0;
-	background-image: url('../images/hero-image.jpg');
+	background-image: url('../images/hero-image.webp');
 	background-size: cover;
 	background-position: center;
 	width: 100%;

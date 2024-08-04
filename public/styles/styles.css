@@ -30,6 +30,12 @@ body {
 	/* overflow-x: hidden; */
 }
 
+main {
+	max-width: 100rem;
+	margin: 0 auto;
+	padding: 2rem;
+}
+
 li:has(> a) {
 	list-style-type: none;
 }

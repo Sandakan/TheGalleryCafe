@@ -44,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["user_id"] = $row["id"];
                 $_SESSION["user_first_name"] = $row["first_name"];
                 $_SESSION["user_last_name"] = $row["last_name"];
+                $_SESSION["role"] = $row["user_role"];
 
 
                 if (isset($_GET['redirect'])) {
@@ -71,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/styles/styles.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/styles/fonts.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/styles/auth.css">
-    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>/public/images/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>/public/images/logo.webp" type="image/x-icon">
 </head>
 
 <body>

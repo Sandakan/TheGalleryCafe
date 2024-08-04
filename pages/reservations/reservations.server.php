@@ -24,11 +24,11 @@ function getReservedSlots($conn, $reservation_date, $people_no)
     return $reserved_slots;
 }
 
-function getAvailableSlots($reserved_slots, $operating_start, $operating_end, $slot_duration)
+function getAvailableSlots($reserved_slots, $reservation_date, $operating_start, $operating_end, $slot_duration)
 {
     $available_slots = [];
-    $current_time = strtotime($operating_start);
-    $end_time = strtotime($operating_end);
+    $current_time = strtotime($reservation_date . ' ' . $operating_start);
+    $end_time = strtotime($reservation_date . ' ' . $operating_end);
     $now = time(); // Get the current time
 
     while ($current_time < $end_time) {
@@ -48,7 +48,7 @@ function getAvailableSlots($reserved_slots, $operating_start, $operating_end, $s
         }
 
         // If slot is available, add it to the list
-        if ($slot_available) {
+        if ($now < $current_time && $slot_available) {
             $available_slots[] = date('Y-m-d H:i:s', $current_time);
         }
 
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $reservation_date = $_POST['reservation_date'];
 
         $reserved_slots = getReservedSlots($conn, $reservation_date, $no_of_people);
-        $available_slots = getAvailableSlots($reserved_slots, OPERATING_START, OPERATING_END, SLOT_DURATION);
+        $available_slots = getAvailableSlots($reserved_slots, $reservation_date, OPERATING_START, OPERATING_END, SLOT_DURATION);
         echo json_encode($available_slots);
     }
 }

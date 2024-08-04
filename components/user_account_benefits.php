@@ -1,5 +1,5 @@
 <div class="user-account-benefits-container">
-    <img src="<?php echo BASE_URL; ?>/public/images/logo.png" alt="logo" />
+    <img src="<?php echo BASE_URL; ?>/public/images/logo.webp" alt="logo" />
 
     <h2 class="user-account-benefits-title">With an account, you can explore exclusive benefits such as,</h2>
     <ul class="user-account-benefits">

@@ -63,15 +63,15 @@ function fetchAvailableTable($conn, $reservation_datetime, $no_of_people)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $no_of_people = $_POST["no_of_people"];
-    $reservation_date = $_POST["reservation_date"];
+    // reservation_time contains both date and time
     $reservation_time = $_POST["reservation_time"];
     $occasion = $_POST["occasion"] ?? null;
     $special_request = $_POST["special_request"] ?? null;
     $pre_orders = $_POST["pre_orders"];
 
     $is_pre_orders_enabled = $pre_orders == "enabled";
-    $reservation_start_datetime = date('Y-m-d H:i:s', strtotime("$reservation_date $reservation_time"));
-    $reservation_end_time = strtotime("$reservation_date $reservation_time") + (SLOT_DURATION * 60);
+    $reservation_start_datetime = date('Y-m-d H:i:s', strtotime($reservation_time));
+    $reservation_end_time = strtotime($reservation_time) + (SLOT_DURATION * 60);
     $reservation_end_datetime = date('Y-m-d H:i:s', $reservation_end_time);
 
     $table_id = fetchAvailableTable($conn, $reservation_start_datetime, $no_of_people);
@@ -92,18 +92,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<script>alert('Error: " . mysqli_stmt_error($stmt) . "');</script>";
             exit();
         }
-        $reservation_id = mysqli_insert_id($conn);
+        $table_reservation_id = mysqli_insert_id($conn);
 
         // create a new reservation entry
         $q3 = <<< SQL
-                INSERT INTO reservation (table_reservation_id, user_id, occasion, special_request)
-                VALUES ($reservation_id, $user_id, '$occasion', '$special_request');
+                INSERT INTO reservation (table_reservation_id, user_id, occasion, special_request, no_of_people)
+                VALUES ($table_reservation_id, $user_id, '$occasion', '$special_request', $no_of_people);
             SQL;
 
         if (!mysqli_query($conn, $q3)) {
             echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
             exit();
         }
+
+        $reservation_id = mysqli_insert_id($conn);
 
         if ($is_pre_orders_enabled) {
             // get cart items
@@ -192,7 +194,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/styles/styles.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/styles/fonts.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/styles/reservations.css">
-    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>/public/images/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo BASE_URL; ?>/public/images/logo.webp" type="image/x-icon">
 </head>
 
 <body>

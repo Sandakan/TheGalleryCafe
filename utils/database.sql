@@ -10,6 +10,7 @@ CREATE TABLE `reservation` (
 	`id` INT NOT NULL AUTO_INCREMENT UNIQUE,
 	`table_reservation_id` INT NOT NULL,
 	`user_id` INT NOT NULL,
+	`no_of_people` INT NOT NULL,
 	`occasion` VARCHAR(100),
 	`special_request` VARCHAR(512),
 	`created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

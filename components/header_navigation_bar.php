@@ -27,7 +27,7 @@ function isActivePage($url)
 
 <nav class="blurred-background">
 	<a href="<?php echo BASE_URL; ?>/index.php" class="logo-container">
-		<img src="<?php echo BASE_URL; ?>/public/images/logo.png" alt="logo" />
+		<img src="<?php echo BASE_URL; ?>/public/images/logo.webp" alt="logo" />
 		<h1>The Gallery Café</h1>
 	</a>
 
@@ -36,6 +36,11 @@ function isActivePage($url)
 		<li class="<?php isActivePage('/index.php') ?>"><a href="<?php echo BASE_URL; ?>/index.php">Home</a></li>
 		<li class="<?php isActivePage('/pages/menu/menu.php') ?>"><a href="<?php echo BASE_URL; ?>/pages/menu/menu.php">Menu</a></li>
 		<li class="<?php isActivePage('/pages/reservations/reservations.php') ?>"><a href="<?php echo BASE_URL; ?>/pages/reservations/reservations.php">Reservations</a></li>
+		<?php if (isset($_SESSION['role']) && ($_SESSION['role'] != 'CUSTOMER')) : ?>
+			<li class="<?php isActivePage('/pages/dashboard/' . strtolower($_SESSION['role']) . '_dashboard.php') ?>">
+				<a href="<?php echo BASE_URL; ?>/pages/dashboard/<?= strtolower($_SESSION['role']) ?>_dashboard.php">Dashboard</a>
+			</li>
+		<?php endif; ?>
 		<!-- <li class="<?php isActivePage('#about') ?>"><a href="#about">About</a></li>
 		<li class="<?php isActivePage('#contact') ?>"><a href="#contact">Contact</a></li> -->
 		<li class="<?php isActivePage('/pages/cart/cart.php') ?>">

@@ -81,7 +81,7 @@ li > a:hover {
 
 .input-group-container {
 	display: grid;
-	grid-auto-flow: column;
+	grid-auto-flow: column dense;
 	gap: 1rem;
 }
 
@@ -93,7 +93,7 @@ li > a:hover {
 .input-container > :is(input, select) {
 	padding: 0.75rem 1rem;
 	border-radius: 0.5rem;
-	border: 1px solid #000;
+	border: 2px solid hsla(0, 0%, 80%, 0.5);
 	/* border: none; */
 	background-color: var(--primary-highlight-color);
 	backdrop-filter: blur(0.75);
@@ -108,8 +108,65 @@ li > a:hover {
 .input-container > small {
 	font-size: 0.75rem;
 	margin-top: 0.5rem;
+	color: hsl(0, 0%, 25%);
 }
 
 :is(input, select):has(+ .error-message:not(:empty)) {
 	border: 2px solid red;
+}
+
+/* ? TABLES */
+table {
+	width: 100%;
+	table-layout: auto;
+	border-radius: 1rem;
+	padding: 1rem;
+	border-collapse: collapse;
+	/* table-layout: fixed; */
+	/* border: 1px solid #000; */
+	/* overflow: hidden; */
+}
+
+table * {
+	transition: background 0.25s ease-in-out;
+	/* box-shadow: none !important; */
+}
+
+table :is(td, th) {
+	/* to fix table cell collapse issues when having flex cells */
+	/* Fix by Håkan Save Hansson. https://codepen.io/savehansson/pen/DmxyEP */
+	box-shadow: 1px 0 0 0 #000, 0 1px 0 0 #000, 1px 1px 0 0 #000, 1px 0 0 0 #000 inset, 0 1px 0 0 #000 inset;
+	padding: 1rem;
+	width: fit-content;
+	text-align: center;
+}
+
+table > thead > tr {
+	background-color: var(--primary-font-color);
+	color: var(--secondary-font-color);
+	height: 3rem;
+}
+
+table > tbody > tr {
+	background-color: var(--primary-background-color);
+}
+
+table > tbody > tr:hover {
+	background-color: var(--primary-highlight-color) !important;
+}
+
+table > tbody > tr:nth-child(even) {
+	background-color: var(--secondary-background-color);
+}
+
+td > .actions-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+}
+
+hr {
+	margin: 2rem 0;
+	border: 1px solid hsla(0, 0%, 80%, 0.25);
 }

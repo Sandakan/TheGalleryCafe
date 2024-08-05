@@ -132,7 +132,7 @@ function renderCartItem($row)
     $removeButton = $menu_item_quantity == 1 ? "<span class='material-symbols-rounded delete-icon'>delete</span>" : "<span class='material-symbols-rounded'>remove</span>";
     echo <<< HTML
      <tr>
-        <td><img src="$menu_item_image" /><span>$menu_item_name</span></td>
+        <td><div class="menu-item"><img src="$menu_item_image" /><span>$menu_item_name</span></div></td>
         <td>
             <div class="cart-items-incrementing-actions-container">
                 <button type="button" class="btn-secondary" onclick="changeCartItemQuantity($cart_item_id,$menu_item_quantity,-1)">
@@ -207,7 +207,7 @@ function renderCartItem($row)
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="3">Total</td>
+                        <td class="total" colspan="3">Total</td>
                         <td>LKR <?= round($total_cart_price, 2); ?></td>
                     </tr>
                 </tfoot>

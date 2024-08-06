@@ -33,16 +33,20 @@ function isActivePage($url)
 
 
 	<ul class="nav-links">
-		<li class="<?php echo isActivePage('/index.php') ?>"><a href="<?php echo BASE_URL; ?>/index.php">Home</a></li>
-		<li class="<?php echo isActivePage('/pages/menu/menu.php') ?>"><a href="<?php echo BASE_URL; ?>/pages/menu/menu.php">Menu</a></li>
-		<li class="<?php echo isActivePage('/pages/reservations/reservations.php') ?>"><a href="<?php echo BASE_URL; ?>/pages/reservations/reservations.php">Reservations</a></li>
+		<li class="<?php echo isActivePage('/index.php') ?>">
+			<a href="<?php echo BASE_URL; ?>/index.php">Home</a>
+		</li>
+		<li class="<?php echo isActivePage('/pages/menu/menu.php') ?>">
+			<a href="<?php echo BASE_URL; ?>/pages/menu/menu.php">Menu</a>
+		</li>
+		<li class="<?php echo isActivePage('/pages/reservations/reservations.php') ?>">
+			<a href="<?php echo BASE_URL; ?>/pages/reservations/reservations.php">Reservations</a>
+		</li>
 		<?php if (isset($_SESSION['role']) && ($_SESSION['role'] != 'CUSTOMER')) : ?>
-			<li class="<?php echo isActivePage('/pages/dashboard/' . strtolower($_SESSION['role']) . '_dashboard.php') ?>">
-				<a href="<?php echo BASE_URL; ?>/pages/dashboard/<?= strtolower($_SESSION['role']) ?>_dashboard.php">Dashboard</a>
+			<li class="<?php echo isActivePage('/pages/dashboard/' . strtolower($_SESSION['role']) . '/' . strtolower($_SESSION['role']) . '_dashboard.php') ?>">
+				<a href="<?php echo BASE_URL; ?>/pages/dashboard/<?= strtolower($_SESSION['role']) ?>/<?= strtolower($_SESSION['role']) ?>_dashboard.php">Dashboard</a>
 			</li>
 		<?php endif; ?>
-		<!-- <li class="<?php echo isActivePage('#about') ?>"><a href="#about">About</a></li>
-		<li class="<?php echo isActivePage('#contact') ?>"><a href="#contact">Contact</a></li> -->
 		<li class="<?php echo isActivePage('/pages/cart/cart.php') ?>">
 			<a href="<?php echo BASE_URL; ?>/pages/cart/cart.php" class="cart-btn">
 				<span class="material-symbols-rounded">shopping_cart</span>

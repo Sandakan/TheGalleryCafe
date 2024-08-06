@@ -11,7 +11,7 @@ if (!isset($_SESSION["user_id"])) {
     exit();
 }
 $user_id = $_SESSION["user_id"];
-
+$BASE_URL = BASE_URL;
 // reservation info
 $no_of_people = 0;
 $reservation_date;
@@ -217,8 +217,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="input-group-container">
                 <div class="input-container">
                     <label for="no_of_people">Number of people *</label>
-                    <select type="text" name="no_of_people" id="no_of_people" placeholder="Select the no of people" required onchange="getReservationTimeSlots()" value="<?php echo $no_of_people; ?>">
-                        <option value="" selected disabled>Select the number of people</option>
+                    <select type="text" name="no_of_people" id="no_of_people" placeholder="Select the no of people" required onchange="getReservationTimeSlots('<?= BASE_URL ?>')">
+                        <option value="" selected disabled hidden>Select the number of people</option>
                         <?php
 
                         for ($i = 1; $i <= $max_no_of_people; $i++) {
@@ -232,13 +232,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="input-container">
                     <label for="reservation_date">Reservation Date *</label>
-                    <input type="date" name="reservation_date" id="reservation_date" required onchange="getReservationTimeSlots()" />
+                    <input type="date" name="reservation_date" id="reservation_date" required onchange="getReservationTimeSlots('<?= BASE_URL ?>')" />
                 </div>
 
                 <div class="input-container">
                     <label for="reservation_time">Reservation Time *</label>
                     <select type="text" name="reservation_time" id="reservation_time" placeholder="Select your preferred reservation time" required>
-                        <option value="" selected disabled>Select your preferred reservation time</option>
+                        <option value="" selected disabled hidden>Select your preferred reservation time</option>
                     </select>
                     <small id="find-table-model-response-container">Select previous options to list the available time slots</small>
                 </div>
@@ -263,7 +263,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="input-container">
                     <label for="occasion">Select an occasion (optional)</label>
                     <select type="text" name="occasion" id="occasion" placeholder="Select an occasion">
-                        <option value="" selected disabled>Select an occasion (optional)</option>
+                        <option value="" selected disabled hidden>Select an occasion (optional)</option>
                         <option value="Birthday">Birthday</option>
                         <option value="Anniversary">Anniversary</option>
                         <option value="Meeting">Meeting</option>

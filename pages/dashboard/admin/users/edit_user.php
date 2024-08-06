@@ -20,6 +20,9 @@ $alertInfo = array();
 if (!isset($_GET['user_id'])) {
     echo "User ID not found";
     exit();
+} else if ($_GET['user_id'] == $_SESSION['user_id']) {
+    echo "You cannot edit your own account";
+    exit();
 }
 
 $q = <<<SQL
@@ -55,11 +58,11 @@ function sanitize_input($data)
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // $user_role = sanitize_input($_POST["user_role"]);
-    // if (!empty($_POST["user_role"]) && !in_array($user_role, $roles)) {
-    //     $user_role_error = "Unknown user role";
-    //     $is_error = true;
-    // }
+    $user_role = sanitize_input($_POST["user_role"]);
+    if (!empty($_POST["user_role"]) && !in_array($user_role, $roles)) {
+        $user_role_error = "Unknown user role";
+        $is_error = true;
+    }
     $first_name = sanitize_input($_POST["first_name"]);
     if (!empty($_POST["first_name"]) && !preg_match("/^[a-zA-Z ]+$/", $first_name)) {
         $first_name_error = "Only letters and white space allowed";
@@ -86,16 +89,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $password = sanitize_input($_POST["password"]);
     $confirm_password = sanitize_input($_POST["confirm_password"]);
-    if (!empty($_POST["password"]) && !empty($_POST["confirm_password"]) && $password != $confirm_password) {
-        $password_error = "Passwords do not match";
-        $is_error = true;
+    if (!empty($_POST["password"]) && !empty($_POST["confirm_password"])) {
+        if ($password != $confirm_password) {
+            $password_error = "Passwords do not match";
+            $is_error = true;
+        }
+        if (strlen($password) < 8) {
+            $password_error = "Password must be at least 8 characters";
+            $is_error = true;
+        }
     }
 
     if (!$is_error) {
         $hashed_password = !empty($password) ? password_hash($password, PASSWORD_DEFAULT) : $user['password'];
         $query = <<<SQL
             UPDATE `user` SET
-                -- `user_role` = '$user_role',
+                `user_role` = '$user_role',
                 `first_name` = '$first_name',
                 `last_name` = '$last_name',
                 `email` = '$email',
@@ -147,19 +156,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </header>
 
                     <form class="register-form" method="POST" action="<?php echo htmlspecialchars($_SERVER["REQUEST_URI"]); ?>">
-                        <!-- <div class="input-container">
+                        <div class="input-container">
                             <label for="user_role">User Role *</label>
-                            <select type="text" name="user_role" id="user_role" placeholder="Select the no of people" required onchange="getReservationTimeSlots()" value="<?php echo $user_role; ?>">
-                                <option value="default" selected disabled>Select the user role</option>
-                                <option value="ADMIN">Administrator</option>
-                                <option value="STAFF">Staff</option>
-                                <option value="CUSTOMER">Customer</option>
+                            <select name="user_role" id="user_role" value="STAFF">
+                                <?php
+                                foreach ($roles as $role) {
+                                    $selected = $user_role == $role ? "selected" : "";
+                                    echo "<option value='$role' $selected>$role</option>";
+                                }
+
+                                ?>
                             </select>
                             <span class="error-message"><?php echo $user_role_error; ?></span>
-                            <small>Current user role is <b><?= $user_role ?></b></small>
                         </div>
 
-                        <hr> -->
+                        <hr>
 
                         <div class="input-group-container">
                             <div class="input-container">
@@ -203,7 +214,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         <hr>
 
-                        <button class="btn-primary form-submit-btn" type="submit">Add User</button>
+                        <button class="btn-primary form-submit-btn" type="submit">Update User</button>
 
                     </form>
                 </div>

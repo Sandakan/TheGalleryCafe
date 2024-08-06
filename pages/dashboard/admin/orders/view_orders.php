@@ -9,6 +9,18 @@ if (isset($_SESSION["role"]) != 'ADMIN') {
     header("Location: " . BASE_URL . "/index.php");
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_POST['reason'] == 'change_order_status' && isset($_POST['order_id']) && isset($_POST['order_status'])) {
+        $order_id = $_POST['order_id'];
+        $status = $_POST['order_status'];
+        $q = "UPDATE `order` SET `status` = '{$status}', `updated_at` = NOW() WHERE `id` = {$order_id};";
+
+        if (mysqli_query($conn, $q)) {
+            echo "<script>alert('Order status updated successfully!');</script>";
+        } else echo "<script>alert('Failed to change order status: " . mysqli_error($conn) . "');</script>";
+    }
+}
+
 $query = <<< SQL
 SELECT
     o.id,
@@ -21,7 +33,7 @@ FROM
 WHERE
     o.user_id = {$_SESSION['user_id']}
 ORDER BY
-    o.created_at DESC;
+     o.status ASC, o.created_at DESC;
 SQL;
 
 $result = mysqli_query($conn, $query);
@@ -50,7 +62,9 @@ $result = mysqli_query($conn, $query);
 
             <div class="dashboard-content-container">
                 <div class="dashboard-content admin-dashboard-orders">
-                    <h2>Orders</h2>
+                    <header>
+                        <h2>Orders</h2><a href="<?php echo BASE_URL; ?>/pages/cart/cart.php" class="btn-secondary"><span class="material-symbols-rounded btn-icon">add</span><span>Add Order in Cart</span></a>
+                    </header>
 
                     <table class="orders-container">
                         <thead>
@@ -60,10 +74,12 @@ $result = mysqli_query($conn, $query);
                                 <th>Items</th>
                                 <th>Status</th>
                                 <th>Total Price</th>
+                                <th class="order-actions">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
+                            $BASE_URL = BASE_URL;
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $order_id = $row['id'];
                                 $created_at = date('Y F jS h:i:s A', strtotime($row['created_at']));
@@ -90,15 +106,35 @@ $result = mysqli_query($conn, $query);
                                     }
                                 } else $items = 'N/A';
 
+                                $status_buttons = '';
+                                if ($status == 'PENDING') {
+                                    $status_buttons  = <<< HTML
+                                    <button class="btn-secondary btn-only-icon" title="Mark order as Completed" onclick="updateOrderStatus($order_id, true)">
+                                        <span class="material-symbols-rounded btn-icon">check</span>
+                                    </button>
+                                    <button class="btn-secondary btn-only-icon" title="Mark order as Cancelled" onclick="updateOrderStatus($order_id, false)">
+                                        <span class="material-symbols-rounded btn-icon">close</span>
+                                    </button>
+                                    HTML;
+                                }
+
                                 echo <<< HTML
-                            <tr class="order">
+                                <tr class="order">
                                     <td class="order-id">#{$order_id}</td>
                                     <td class="order-date">{$created_at}</td>
                                     <td class="order-items">$items</td>
                                     <td class="order-status">{$status}</td>
                                     <td class="order-price">LKR {$total_amount}</td>
-                            </tr>
-                        HTML;
+                                    <td class="order-actions">
+                                        <div class="actions-container">
+                                            $status_buttons
+                                            <a href="{$BASE_URL}/pages/dashboard/admin/orders/edit_order.php?order_id={$order_id}" class="btn-secondary btn-only-icon" title="Edit Order">
+                                                <span class="material-symbols-rounded btn-icon">edit</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                HTML;
                             }
                             ?>
                         </tbody>
@@ -108,7 +144,11 @@ $result = mysqli_query($conn, $query);
         </div>
     </main>
 
-    <?php include('../../../../components/footer.php'); ?>
+    <?php
+    include('../../../../components/footer.php');
+    mysqli_close($conn);
+    echo "<script src='" . BASE_URL . "/public/scripts/view_orders.js'></script>";
+    ?>
 </body>
 
 </html>

@@ -48,10 +48,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $password = test_input($_POST["password"]);
     $confirm_password = test_input($_POST["confirm_password"]);
-    if (!empty($_POST["password"]) && !empty($_POST["confirm_password"]) && $password != $confirm_password) {
-        $password_error = "Passwords do not match";
-        $is_error = true;
+    if (!empty($_POST["password"]) && !empty($_POST["confirm_password"])) {
+        if ($password != $confirm_password) {
+            $password_error = "Passwords do not match";
+            $is_error = true;
+        }
+        if (strlen($password) < 8) {
+            $password_error = "Password must be at least 8 characters";
+            $is_error = true;
+        }
     }
+
 
     if (!$is_error) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);

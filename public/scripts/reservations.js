@@ -1,4 +1,4 @@
-function getReservationTimeSlots() {
+function getReservationTimeSlots(BASE_URL) {
 	const numberOfPeopleInput = document.getElementById('no_of_people');
 	const reservationDateInput = document.getElementById('reservation_date');
 	const responseContainer = document.getElementById('find-table-model-response-container');
@@ -19,7 +19,7 @@ function getReservationTimeSlots() {
 		// reservation time options container
 		const reservationTimeInput = document.getElementById('reservation_time');
 
-		fetch(`reservations.server.php`, {
+		fetch(`${BASE_URL}/pages/reservations/reservations.server.php`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',

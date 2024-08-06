@@ -11,12 +11,14 @@ if (isset($_SESSION["role"]) != 'ADMIN') {
 
 $query = <<<SQL
 SELECT
-    (SELECT COUNT(*) FROM `user`) AS total_users,
-    (SELECT COUNT(*) FROM `order`) AS total_orders,
-    (SELECT COUNT(*) FROM reservation) AS total_reservations,
+    (SELECT COUNT(*) FROM `user` WHERE deleted_at IS NULL) AS total_users,
+    (SELECT COUNT(*) FROM `order` WHERE deleted_at IS NULL) AS total_orders,
+    (SELECT COUNT(*) FROM reservation WHERE deleted_at IS NULL) AS total_reservations,
+    (SELECT COUNT(*) FROM `event` WHERE deleted_at IS NULL) AS total_events,
+    (SELECT COUNT(*) FROM promotion WHERE deleted_at IS NULL) AS total_promotions,
     (SELECT COUNT(DISTINCT r.id) 
      FROM reservation r 
-     INNER JOIN `order` o ON r.id = o.reservation_id) AS reservations_with_pre_orders;
+     INNER JOIN `order` o ON r.id = o.reservation_id WHERE r.deleted_at IS NULL) AS reservations_with_pre_orders;
 SQL;
 
 $result = mysqli_query($conn, $query);
@@ -70,6 +72,22 @@ $data = mysqli_fetch_assoc($result);
                                 <div class="stat-value"><?php echo $data['total_users']; ?></div>
                             </div>
                             <span class="stat-icon material-symbols-rounded">group</span>
+                        </div>
+
+                        <div class="stat">
+                            <div class="stat-info">
+                                <h4 class="stat-title">Total Events</h4>
+                                <div class="stat-value"><?php echo $data['total_events']; ?></div>
+                            </div>
+                            <span class="stat-icon material-symbols-rounded">event</span>
+                        </div>
+
+                        <div class="stat">
+                            <div class="stat-info">
+                                <h4 class="stat-title">Total Promotions</h4>
+                                <div class="stat-value"><?php echo $data['total_promotions']; ?></div>
+                            </div>
+                            <span class="stat-icon material-symbols-rounded">editor_choice</span>
                         </div>
 
                         <div class="stat">

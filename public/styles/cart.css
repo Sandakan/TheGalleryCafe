@@ -1,6 +1,6 @@
 .cart-info-container {
 	width: 100%;
-	max-width: 80rem;
+	margin-bottom: 2rem;
 }
 
 .cart-info-container > h1 {
@@ -9,7 +9,7 @@
 	font-size: 3rem;
 }
 
-.cart-model {
+.cart {
 	padding: 2rem;
 }
 
@@ -71,9 +71,9 @@ tbody > tr:hover {
 	background-color: var(--primary-highlight-color);
 }
 
-.cart-model > button {
+.cart > button {
 	margin-top: 2rem;
-	float: right;
+	/* float: right; */
 }
 
 .cart-items-incrementing-actions-container {
@@ -109,4 +109,10 @@ tbody > tr:hover {
 	font-weight: 500;
 	font-size: 1rem;
 	text-align: center;
+}
+
+.cart-actions-container {
+	display: flex;
+	justify-content: end;
+	margin-top: 2rem;
 }

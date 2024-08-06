@@ -135,11 +135,11 @@ function renderCartItem($row)
         <td><div class="menu-item"><img src="$menu_item_image" /><span>$menu_item_name</span></div></td>
         <td>
             <div class="cart-items-incrementing-actions-container">
-                <button type="button" class="btn-secondary" onclick="changeCartItemQuantity($cart_item_id,$menu_item_quantity,-1)">
+                <button type="button" class="btn-secondary" onclick="changeItemQuantity($cart_item_id,$menu_item_quantity,-1)">
                     $removeButton
                 </button>
                 <span class="selected-item-count">$menu_item_quantity</span>
-                <button type="button" class="btn-secondary" onclick="changeCartItemQuantity($cart_item_id,$menu_item_quantity,1)">
+                <button type="button" class="btn-secondary" onclick="changeItemQuantity($cart_item_id,$menu_item_quantity,1)">
                     <span class="material-symbols-rounded">add</span>
                 </button>    
             </div>
@@ -167,13 +167,12 @@ function renderCartItem($row)
 <body>
     <?php include('../../components/header_navigation_bar.php'); ?>
 
-    <div class="model-container cart-model-container">
-        <div class="cart-info-container">
-            <h1 class="create-reservation-heading">Cart</h1>
-        </div>
+    <main>
+        <section class="cart">
+            <div class="cart-info-container">
+                <h1 class="create-reservation-heading">Cart</h1>
+            </div>
 
-
-        <div class="model cart-model">
             <table class="cart-table">
                 <thead>
                     <tr>
@@ -214,10 +213,13 @@ function renderCartItem($row)
             </table>
 
             <?php if ($cart_items_count > 0) { ?>
-                <button class="btn btn-primary" onclick="confirmOrder(<?= $cart_id ?>)">Confirm Order</button>
+                <div class="cart-actions-container">
+                    <button type="button" class="btn btn-primary" onclick="confirmOrder(<?= $cart_id ?>)">Confirm Order</button>
+                </div>
             <?php } ?>
-        </div>
-    </div>
+
+        </section>
+    </main>
 
     <?php
     echo '<script src="' . BASE_URL . '/public/scripts/cart.js"></script>';

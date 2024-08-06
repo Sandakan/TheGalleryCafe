@@ -10,6 +10,28 @@ if (isset($_SESSION["role"]) != 'ADMIN') {
     exit();
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_POST['reason'] == 'delete_reservation' && isset($_POST['reservation_id'])) {
+        $q = <<<SQL
+            UPDATE `reservation` SET `deleted_at` = NOW() WHERE `id` = {$_POST['reservation_id']};
+        SQL;
+        $res = mysqli_query($conn, $q);
+
+        if (!$res) {
+            echo mysqli_error($conn);
+        }
+
+        $q2 = <<<SQL
+            UPDATE `table_reservation` SET `deleted_at` = NOW() WHERE `id` = (SELECT `table_reservation_id` FROM `reservation` WHERE `id` = {$_POST['reservation_id']});
+        SQL;
+
+        $res2 = mysqli_query($conn, $q2);
+        if (!$res2) {
+            echo mysqli_error($conn);
+        }
+    }
+}
+
 $query =
     <<<SQL
 SELECT
@@ -22,6 +44,8 @@ FROM
     `reservation` r
 LEFT JOIN `table_reservation` tr ON r.table_reservation_id = tr.id
 LEFT JOIN `order` o ON o.reservation_id = r.id
+WHERE
+    r.deleted_at IS NULL
 ORDER BY
     DATEDIFF(tr.starts_at, NOW()) DESC;
 SQL;
@@ -52,7 +76,10 @@ $result = mysqli_query($conn, $query);
 
             <div class="dashboard-content-container">
                 <div class="dashboard-content admin-dashboard-reservations">
-                    <h2>Reservations</h2>
+                    <header>
+                        <h2>Reservations</h2>
+                        <a href="<?php echo BASE_URL; ?>/pages/reservations/reservations.php" class="btn-secondary"><span class="material-symbols-rounded btn-icon">add</span><span>Add Reservation</span></a>
+                    </header>
 
                     <table class="reservations-container">
                         <thead>
@@ -61,10 +88,14 @@ $result = mysqli_query($conn, $query);
                                 <th>Pre-ordered Items</th>
                                 <th>Starts At</th>
                                 <th>Table ID</th>
+                                <th class="reservation-actions">Actions</th>
                             </tr>
+
                         </thead>
                         <tbody>
                             <?php
+                            $BASE_URL = BASE_URL;
+
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $reservation_id = $row['id'];
                                 $starts_at = date('Y F jS h:i:s A', strtotime($row['starts_at']));
@@ -93,10 +124,20 @@ $result = mysqli_query($conn, $query);
 
                                 echo <<< HTML
                             <tr class="reservation">
-                                    <td class="reservation-id">#{$reservation_id}</td>
-                                    <td class="reservation-pre-order-items">{$reservation_preordered_items}</td>
-                                    <td class="reservation-date">{$starts_at}</td>
-                                    <td class="reservation-table_id">#{$table_id}</td>
+                                <td class="reservation-id">#{$reservation_id}</td>
+                                <td class="reservation-pre-order-items">{$reservation_preordered_items}</td>
+                                <td class="reservation-date">{$starts_at}</td>
+                                <td class="reservation-table_id">#{$table_id}</td>
+                                <td class="reservation-actions">
+                                    <div class="actions-container">
+                                        <a href="{$BASE_URL}/pages/dashboard/admin/reservations/edit_reservation.php?reservation_id={$reservation_id}" class="btn-secondary btn-only-icon" title="Edit Reservation">
+                                            <span class="material-symbols-rounded btn-icon">edit</span>
+                                        </a>
+                                         <button class="btn-secondary btn-only-icon" title="Delete Menu" onclick="deleteReservation({$reservation_id})">
+                                            <span class="material-symbols-rounded btn-icon">delete</span>
+                                        </button>
+                                    </div>
+                                </td>
                             </tr>
                             HTML;
                             }
@@ -108,7 +149,9 @@ $result = mysqli_query($conn, $query);
         </div>
     </main>
 
-    <?php include('../../../../components/footer.php'); ?>
+    <?php include('../../../../components/footer.php');
+    echo "<script src='" . BASE_URL . "/public/scripts/view_reservations.js'></script>";
+    ?>
 </body>
 
 </html>

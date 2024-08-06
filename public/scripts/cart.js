@@ -1,4 +1,4 @@
-function changeCartItemQuantity(cartItemId, currentQuantity, incrementingValue) {
+function changeItemQuantity(cartItemId, currentQuantity, incrementingValue) {
 	fetch(`cart.php`, {
 		method: 'POST',
 		headers: {

@@ -65,8 +65,7 @@ a.btn-secondary {
 }
 
 .btn-only-icon {
-	width: 2rem !important;
-	height: 2rem !important;
+	width: 2rem;
 	padding: 0;
 	font-size: 1.5rem;
 	display: flex;

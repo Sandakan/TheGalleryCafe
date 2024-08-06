@@ -253,8 +253,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <b>Using logged in account</b>
 
                 <div class="account">
-                    <div class="account-info"><span class="material-symbols-rounded-filled">account_circle</span> <?php echo $_SESSION['user_first_name']; ?></div>
-                    <!-- <button type="submit" class="btn-secondary">Use another account</button> -->
+                    <div class="account-info"><span class="material-symbols-rounded-filled">account_circle</span> <?php echo $_SESSION['user_first_name'] . ' ' . $_SESSION['user_last_name']; ?></div>
+                    <button type="submit" class="btn-secondary" onclick="logout('<?= BASE_URL ?>')" title="Create reservation using a different account (Will be logged out automatically)">Use another account</button>
 
                 </div>
             </div>
@@ -309,6 +309,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php
     include('../../components/footer.php');
     echo '<script src="' . BASE_URL . '/public/scripts/reservations.js"></script>';
+    echo "<script src='" . BASE_URL . "/public/scripts/profile.js'></script>";
     ?>
 </body>
 

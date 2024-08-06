@@ -1,17 +1,29 @@
 .login-model,
 .register-model {
-	width: 90%;
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	/* gap: 2rem; */
+	width: 100%;
+	max-width: 40rem;
+	display: flex;
+	justify-content: center;
+	border-color: transparent;
+	/* box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+	-webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+	padding: 1rem; */
+	background-color: hsla(0, 0%, 100%, 0.5);
+	backdrop-filter: blur(5px);
+}
+
+.login-model {
+	max-width: 35rem !important;
 }
 
 :is(.login-model, .register-model) > * {
-	padding: 2rem;
+	padding: 0 2rem;
+	flex-grow: 1;
 }
 
 .user-account-benefits-container {
-	border-right: 1px solid #000;
+	/* border-right: 1px solid #000; */
 }
 
 .user-account-benefits-container > img {
@@ -28,14 +40,29 @@
 	padding: 1rem 2rem;
 }
 
-:is(.login-form, .register-form) > button[type='submit'] {
-	margin-top: 1rem;
+:is(.login-form-actions-container, .register-form-actions-container) {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 }
 
-:is(.login-form, .register-form) > h1 {
-	font-size: 2.5rem;
+:is(.login-form-actions-container, .register-form-actions-container) > button[type='submit'] {
+	margin-top: 2rem;
+	min-width: 12.5rem;
+}
+:is(.login-form, .register-form) header {
+	margin-bottom: 2rem;
+	text-align: center;
+}
+
+:is(.login-form, .register-form) header > h1 {
+	font-size: 3rem;
 	font-weight: 600;
-	margin-bottom: 1rem;
+}
+:is(.login-form, .register-form) header > p {
+	font-size: 0.9rem;
+	font-weight: 300;
 }
 
 .login-form > .input-container > .forget-password-link-container {
@@ -55,7 +82,7 @@
 }
 
 .create-account-link-container {
-	margin-top: 3rem;
+	margin-top: 1rem;
 }
 
 section.unauthorized {

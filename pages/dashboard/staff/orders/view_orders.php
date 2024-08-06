@@ -6,7 +6,8 @@ require '../../../../utils/authenticate.php';
 $conn = initialize_database();
 session_start();
 
-authenticate(array('ADMIN'));
+authenticate(array('STAFF'));
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['reason'] == 'change_order_status' && isset($_POST['order_id']) && isset($_POST['order_status'])) {
@@ -55,10 +56,10 @@ $result = mysqli_query($conn, $query);
     <main>
         <div class="dashboard-container">
 
-            <?php include('../../../../components/admin_dashboard_side_nav.php'); ?>
+            <?php include('../../../../components/staff_dashboard_side_nav.php'); ?>
 
             <div class="dashboard-content-container">
-                <div class="dashboard-content admin-dashboard-orders">
+                <div class="dashboard-content staff-dashboard-orders">
                     <header>
                         <h2>Orders</h2><a href="<?php echo BASE_URL; ?>/pages/cart/cart.php" class="btn-secondary"><span class="material-symbols-rounded btn-icon">add</span><span>Add Order in Cart</span></a>
                     </header>
@@ -125,7 +126,7 @@ $result = mysqli_query($conn, $query);
                                     <td class="order-actions">
                                         <div class="actions-container">
                                             $status_buttons
-                                            <a href="{$BASE_URL}/pages/dashboard/admin/orders/edit_order.php?order_id={$order_id}" class="btn-secondary btn-only-icon" title="Edit Order">
+                                            <a href="{$BASE_URL}/pages/dashboard/staff/orders/edit_order.php?order_id={$order_id}" class="btn-secondary btn-only-icon" title="Edit Order">
                                                 <span class="material-symbols-rounded btn-icon">edit</span>
                                             </a>
                                         </div>

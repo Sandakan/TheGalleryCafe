@@ -11,6 +11,12 @@
 
 .reservation-model {
 	min-height: fit-content;
+	/* background-color: var(--secondary-background-color); */
+	background-color: var(--primary-highlight-color);
+	/* border: 2px solid var(--primary-font-color); */
+	/* box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+	-webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25); */
 }
 
 .reservation-model > h2 {
@@ -45,13 +51,15 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	background-color: var(--primary-highlight-color);
-	border: 1px solid #000;
-	padding: 1rem 1rem;
+	background-color: hsla(0, 0%, 100%, 0.5);
+	padding: 1.5rem;
 	border-radius: 0.5rem;
 	margin-top: 0.51rem;
 	/* background-color: var(--primary-background-color); */
 	/* border: 1px solid #000; */
+	box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
 .logged-in-account > .account > .account-info {
@@ -89,8 +97,15 @@
 	align-items: center;
 	justify-content: space-between;
 	padding: 1rem;
-	border: 1px solid #000;
-	border-radius: 1rem;
+	border: 3px solid var(--secondary-background-color);
+	background-color: hsla(0, 0%, 100%, 0.5);
+	border-radius: 0.5rem;
+	cursor: pointer;
+	transition: background 0.25s ease-in-out, color 0.25s ease-in-out;
+}
+
+.options-container > .option:hover {
+	background-color: var(--primary-highlight-color);
 }
 
 .options-container > .option > h3 {
@@ -99,5 +114,7 @@
 }
 
 .options-container > .option:has(> input[type='radio']:checked) {
-	background-color: var(--primary-highlight-color);
+	background-color: var(--primary-font-color);
+	color: var(--secondary-font-color);
+	border-color: var(--primary-font-color);
 }

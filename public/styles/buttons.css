@@ -72,3 +72,7 @@ a.btn-secondary {
 	align-items: center;
 	justify-content: center;
 }
+
+:is(.btn-primary, .btn-secondary).dark {
+	border-color: var(--primary-background-color);
+}

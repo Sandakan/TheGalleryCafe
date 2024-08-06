@@ -5,7 +5,9 @@ require '../../../../utils/authenticate.php';
 
 $conn = initialize_database();
 session_start();
-authenticate(array('ADMIN'));
+
+authenticate(array('STAFF'));
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['reason'] == 'delete_reservation' && isset($_POST['reservation_id'])) {
@@ -69,10 +71,10 @@ $result = mysqli_query($conn, $query);
     <main>
         <div class="dashboard-container">
 
-            <?php include('../../../../components/admin_dashboard_side_nav.php'); ?>
+            <?php include('../../../../components/staff_dashboard_side_nav.php'); ?>
 
             <div class="dashboard-content-container">
-                <div class="dashboard-content admin-dashboard-reservations">
+                <div class="dashboard-content staff-dashboard-reservations">
                     <header>
                         <h2>Reservations</h2>
                         <a href="<?php echo BASE_URL; ?>/pages/reservations/reservations.php" class="btn-secondary"><span class="material-symbols-rounded btn-icon">add</span><span>Add Reservation</span></a>
@@ -127,7 +129,7 @@ $result = mysqli_query($conn, $query);
                                 <td class="reservation-table_id">#{$table_id}</td>
                                 <td class="reservation-actions">
                                     <div class="actions-container">
-                                        <a href="{$BASE_URL}/pages/dashboard/admin/reservations/edit_reservation.php?reservation_id={$reservation_id}" class="btn-secondary btn-only-icon" title="Edit Reservation">
+                                        <a href="{$BASE_URL}/pages/dashboard/staff/reservations/edit_reservation.php?reservation_id={$reservation_id}" class="btn-secondary btn-only-icon" title="Edit Reservation">
                                             <span class="material-symbols-rounded btn-icon">edit</span>
                                         </a>
                                          <button class="btn-secondary btn-only-icon" title="Delete Menu" onclick="deleteReservation({$reservation_id})">

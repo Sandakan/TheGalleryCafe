@@ -94,7 +94,9 @@ mysqli_close($conn);
     ?>
         <div class="model-container menu-item-container-model">
             <div class="model menu-item-model">
-                <div class="menu-item-image-container"><img src="<?= BASE_URL ?>/public/images/menu-items/<?php echo $row['image']; ?>" alt=""></div>
+                <div class="menu-item-image-container">
+                    <img src="<?= BASE_URL ?>/public/images/menu-items/<?php echo $row['image']; ?>" alt="">
+                </div>
                 <div class="menu-item-info-and-actions-container">
                     <div class="menu-item-info-container">
                         <h2 class="menu-item-title"><?php echo $row['name']; ?></h2>

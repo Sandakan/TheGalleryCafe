@@ -1,11 +1,10 @@
-.profile-model-container > .profile-model {
+.profile-model {
 	background-color: var(--primary-highlight-color);
 	min-height: 10rem;
 	padding: 2rem;
 	border: none;
-	box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
-	-webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
-	-moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
+	border-radius: 1rem;
+	margin-bottom: 2rem;
 }
 
 .profile-header {

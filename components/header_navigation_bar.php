@@ -44,7 +44,7 @@ function isActivePage($url)
 		</li>
 		<?php if (isset($_SESSION['role']) && ($_SESSION['role'] != 'CUSTOMER')) : ?>
 			<li class="<?php echo isActivePage('/pages/dashboard/' . strtolower($_SESSION['role']) . '/' . strtolower($_SESSION['role']) . '_dashboard.php') ?>">
-				<a href="<?php echo BASE_URL; ?>/pages/dashboard/<?= strtolower($_SESSION['role']) ?>/<?= strtolower($_SESSION['role']) ?>_dashboard.php">Dashboard</a>
+				<a href="<?php echo BASE_URL; ?>/pages/dashboard/<?= strtolower($_SESSION['role']) ?>/<?= strtolower($_SESSION['role']) ?>_dashboard.php"><?= ucwords(strtolower($_SESSION['role'])) ?> Dashboard</a>
 			</li>
 		<?php endif; ?>
 		<li class="<?php echo isActivePage('/pages/cart/cart.php') ?>">

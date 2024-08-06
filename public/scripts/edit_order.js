@@ -21,7 +21,7 @@ function searchItems(BASE_URL, orderId) {
 			return;
 		}
 
-		fetch(`search_items.php`, {
+		fetch(`search_items.server.php`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',

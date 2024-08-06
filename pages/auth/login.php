@@ -80,9 +80,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="model-container login-model-container">
         <div class="model login-model">
-            <?php include('../../components/user_account_benefits.php'); ?>
             <form class="login-form" method="POST" action="<?php echo htmlspecialchars($_SERVER["REQUEST_URI"]); ?>">
-                <h1>Welcome back...</h1>
+                <header>
+                    <h1>Welcome back...</h1>
+                    <p>Log in to your account to see what's new with The Gallery Cafe</p>
+                </header>
 
                 <div class="input-container">
                     <label for="email">Email *</label>
@@ -97,9 +99,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="forget-password-link-container"><a href="./forgot-password.php">Did you forget your password?</a></div>
                 </div>
 
-                <button class="btn-primary" type="submit">Log In</button>
-
-                <div class="create-account-link-container"><a href="./register.php">Not a member? Then, join with us.</a></div>
+                <div class="login-form-actions-container">
+                    <button class="btn-primary" type="submit">Log In</button>
+                    <div class="create-account-link-container"><a href="./register.php">Not a member? Then, join with us.</a></div>
+                </div>
             </form>
         </div>
 

@@ -6,7 +6,7 @@ require '../../../utils/authenticate.php';
 $conn = initialize_database();
 session_start();
 
-authenticate(array('ADMIN'));
+authenticate(array('STAFF'));
 
 
 $query = <<<SQL
@@ -37,7 +37,7 @@ $data = mysqli_fetch_assoc($result);
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard - The Gallery Café</title>
+    <title>Staff Dashboard - The Gallery Café</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/styles/styles.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/styles/fonts.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/styles/dashboard.css">
@@ -48,9 +48,9 @@ $data = mysqli_fetch_assoc($result);
     <?php include('../../../components/header_navigation_bar.php'); ?>
 
     <main>
+        <!-- <h1>Staff Dashboard</h1> -->
         <div class="dashboard-container">
-
-            <?php include('../../../components/admin_dashboard_side_nav.php'); ?>
+            <?php include('../../../components/staff_dashboard_side_nav.php'); ?>
 
             <div class="dashboard-content-container">
                 <div class="dashboard-content admin-dashboard-stats">
@@ -64,30 +64,6 @@ $data = mysqli_fetch_assoc($result);
                                 <div class="stat-value"><?php echo $data['total_orders']; ?></div>
                             </div>
                             <span class="stat-icon material-symbols-rounded">orders</span>
-                        </div>
-
-                        <div class="stat">
-                            <div class="stat-info">
-                                <h4 class="stat-title">Total Users</h4>
-                                <div class="stat-value"><?php echo $data['total_users']; ?></div>
-                            </div>
-                            <span class="stat-icon material-symbols-rounded">group</span>
-                        </div>
-
-                        <div class="stat">
-                            <div class="stat-info">
-                                <h4 class="stat-title">Total Events</h4>
-                                <div class="stat-value"><?php echo $data['total_events']; ?></div>
-                            </div>
-                            <span class="stat-icon material-symbols-rounded">event</span>
-                        </div>
-
-                        <div class="stat">
-                            <div class="stat-info">
-                                <h4 class="stat-title">Total Promotions</h4>
-                                <div class="stat-value"><?php echo $data['total_promotions']; ?></div>
-                            </div>
-                            <span class="stat-icon material-symbols-rounded">editor_choice</span>
                         </div>
 
                         <div class="stat">

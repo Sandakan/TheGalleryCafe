@@ -99,9 +99,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="model-container register-model-container">
         <div class="model register-model">
-            <?php include('../../components/user_account_benefits.php'); ?>
+            <!-- <?php include('../../components/user_account_benefits.php'); ?> -->
             <form class="register-form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                <h1>Join with us...</h1>
+                <header>
+                    <h1>Join with us...</h1>
+                    <p>With an account, you can explore exclusive benefits</p>
+                </header>
 
                 <div class="input-group-container">
                     <div class="input-container">
@@ -141,9 +144,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <span class="error-message"><?php echo $confirm_password_error; ?></span>
                 </div>
 
-                <button class="btn-primary form-submit-btn" type="submit">Register</button>
-
-                <div class="create-account-link-container"><a href="./login.php">Already a member? Then, login to your account.</a></div>
+                <div class="register-form-actions-container">
+                    <button class="btn-primary form-submit-btn" type="submit">Create Account</button>
+                    <div class="create-account-link-container"><a href="./login.php">Already a member? Then, login to your account.</a></div>
+                </div>
             </form>
         </div>
 

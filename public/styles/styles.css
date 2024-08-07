@@ -212,6 +212,12 @@ td > .actions-container {
 	gap: 0.5rem;
 }
 
+td.no-results {
+	text-align: center;
+	padding: 5rem !important;
+	background-color: var(--secondary-background-color) !important;
+}
+
 hr {
 	margin: 2rem 0;
 	border: 1px solid hsla(0, 0%, 80%, 0.25);

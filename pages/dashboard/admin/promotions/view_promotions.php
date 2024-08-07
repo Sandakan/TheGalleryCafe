@@ -72,11 +72,12 @@ $result = mysqli_query($conn, $query);
                         </thead>
                         <tbody>
                             <?php
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $BASE_URL = BASE_URL;
-                                $percentage = floatval($row['discount_percentage']) * 100;
 
-                                echo <<<HTML
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    $percentage = floatval($row['discount_percentage']) * 100;
+
+                                    echo <<<HTML
                                     <tr>
                                         <td class="promotion-id">#{$row['id']}</td>
                                         <td class="promotion-name">{$row['name']}</td>
@@ -96,6 +97,9 @@ $result = mysqli_query($conn, $query);
                                         </td>
                                     </tr>
                                 HTML;
+                                }
+                            } else {
+                                echo '<tr><td colspan="7" class="no-results">No promotions found.</td></tr>';
                             }
                             ?>
                         </tbody>

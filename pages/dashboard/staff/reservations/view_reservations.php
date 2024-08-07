@@ -95,50 +95,54 @@ $result = mysqli_query($conn, $query);
                             <?php
                             $BASE_URL = BASE_URL;
 
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $reservation_id = $row['id'];
-                                $starts_at = date('Y F jS h:i:s A', strtotime($row['starts_at']));
-                                $table_id = $row['table_id'];
-                                $reservation_order_id = isset($row['order_id']) ? '#' . $row['order_id']  : 'N/A';
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    $reservation_id = $row['id'];
+                                    $starts_at = date('Y F jS h:i:s A', strtotime($row['starts_at']));
+                                    $table_id = $row['table_id'];
+                                    $reservation_order_id = isset($row['order_id']) ? '#' . $row['order_id']  : 'N/A';
 
-                                $reservation_preordered_items = '';
-                                if (isset($row['order_id'])) {
-                                    $q4 = <<< SQL
-                            SELECT
-                                mi.name,
-                                oi.quantity
-                            FROM
-                                order_item oi
-                                LEFT JOIN menu_item mi ON mi.id = oi.menu_item_id
-                            WHERE
-                                oi.order_id = {$row['order_id']};
-                            SQL;
-                                    $res4 = mysqli_query($conn, $q4);
-                                    if (mysqli_num_rows($res4) > 0) {
-                                        while ($row = mysqli_fetch_assoc($res4)) {
-                                            $reservation_preordered_items .= $row['name'] . ' x' . $row['quantity'] . '<br>';
+                                    $reservation_preordered_items = '';
+                                    if (isset($row['order_id'])) {
+                                        $q4 = <<< SQL
+                                        SELECT
+                                            mi.name,
+                                            oi.quantity
+                                        FROM
+                                            order_item oi
+                                            LEFT JOIN menu_item mi ON mi.id = oi.menu_item_id
+                                        WHERE
+                                            oi.order_id = {$row['order_id']};
+                                        SQL;
+                                        $res4 = mysqli_query($conn, $q4);
+                                        if (mysqli_num_rows($res4) > 0) {
+                                            while ($row = mysqli_fetch_assoc($res4)) {
+                                                $reservation_preordered_items .= $row['name'] . ' x' . $row['quantity'] . '<br>';
+                                            }
                                         }
-                                    }
-                                } else $reservation_preordered_items = 'N/A';
+                                    } else $reservation_preordered_items = 'N/A';
 
-                                echo <<< HTML
-                            <tr class="reservation">
-                                <td class="reservation-id">#{$reservation_id}</td>
-                                <td class="reservation-pre-order-items">{$reservation_preordered_items}</td>
-                                <td class="reservation-date">{$starts_at}</td>
-                                <td class="reservation-table_id">#{$table_id}</td>
-                                <td class="reservation-actions">
-                                    <div class="actions-container">
-                                        <a href="{$BASE_URL}/pages/dashboard/staff/reservations/edit_reservation.php?reservation_id={$reservation_id}" class="btn-secondary btn-only-icon" title="Edit Reservation">
-                                            <span class="material-symbols-rounded btn-icon">edit</span>
-                                        </a>
-                                         <button class="btn-secondary btn-only-icon" title="Delete Menu" onclick="deleteReservation({$reservation_id})">
-                                            <span class="material-symbols-rounded btn-icon">delete</span>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            HTML;
+                                    echo <<< HTML
+                                    <tr class="reservation">
+                                        <td class="reservation-id">#{$reservation_id}</td>
+                                        <td class="reservation-pre-order-items">{$reservation_preordered_items}</td>
+                                        <td class="reservation-date">{$starts_at}</td>
+                                        <td class="reservation-table_id">#{$table_id}</td>
+                                        <td class="reservation-actions">
+                                            <div class="actions-container">
+                                                <a href="{$BASE_URL}/pages/dashboard/staff/reservations/edit_reservation.php?reservation_id={$reservation_id}" class="btn-secondary btn-only-icon" title="Edit Reservation">
+                                                    <span class="material-symbols-rounded btn-icon">edit</span>
+                                                </a>
+                                                <button class="btn-secondary btn-only-icon" title="Delete Menu" onclick="deleteReservation({$reservation_id})">
+                                                    <span class="material-symbols-rounded btn-icon">delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    HTML;
+                                }
+                            } else {
+                                echo '<tr><td colspan="5" class="no-results">No reservations found.</td></tr>';
                             }
                             ?>
                         </tbody>

@@ -70,17 +70,19 @@ $result = mysqli_query($conn, $query);
                         </thead>
                         <tbody>
                             <?php
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $BASE_URL = BASE_URL;
 
-                                $q1 = <<<SQL
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    $BASE_URL = BASE_URL;
+
+                                    $q1 = <<<SQL
                                 SELECT COUNT(*) AS menu_item_count FROM `menu_item` WHERE `menu_id` = {$row['id']};
                                 SQL;
 
-                                $res1 = mysqli_query($conn, $q1);
-                                $row1 = mysqli_fetch_assoc($res1);
+                                    $res1 = mysqli_query($conn, $q1);
+                                    $row1 = mysqli_fetch_assoc($res1);
 
-                                echo <<<HTML
+                                    echo <<<HTML
                                     <tr>
                                         <td class="menu-id">#{$row['id']}</td>
                                         <td class="menu-name">{$row['name']}</td>
@@ -101,6 +103,9 @@ $result = mysqli_query($conn, $query);
                                         </td>
                                     </tr>
                                 HTML;
+                                }
+                            } else {
+                                echo '<tr><td colspan="5" class="no-results">No menus found.</td></tr>';
                             }
                             ?>
                         </tbody>

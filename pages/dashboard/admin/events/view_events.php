@@ -71,10 +71,10 @@ $result = mysqli_query($conn, $query);
                         </thead>
                         <tbody>
                             <?php
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $BASE_URL = BASE_URL;
 
-                                echo <<<HTML
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo <<<HTML
                                     <tr>
                                         <td class="event-id">#{$row['id']}</td>
                                         <td class="event-name">{$row['name']}</td>
@@ -93,6 +93,9 @@ $result = mysqli_query($conn, $query);
                                         </td>
                                     </tr>
                                 HTML;
+                                }
+                            } else {
+                                echo '<tr><td colspan="6" class="no-results">No events found.</td></tr>';
                             }
                             ?>
                         </tbody>

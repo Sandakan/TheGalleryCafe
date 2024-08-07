@@ -102,11 +102,7 @@ $BASE_URL = BASE_URL;
                                         HTML;
                                 }
                             } else {
-                                echo <<< HTML
-                                        <tr class="order">
-                                                <td colspan="5" class="order-id">No Orders found</td>
-                                        </tr>
-                                    HTML;
+                                echo '<tr><td colspan="5" class="no-results">No orders found.</td></tr>';
                             }
                             ?>
                         </tbody>

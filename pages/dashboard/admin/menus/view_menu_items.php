@@ -142,7 +142,7 @@ $menu_items  = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                 HTML;
                                 }
                             } else {
-                                echo '<tr><td colspan="7">No menu items found.</td></tr>';
+                                echo '<tr><td colspan="7" class="no-results">No menu items found.</td></tr>';
                             }
                             ?>
                         </tbody>

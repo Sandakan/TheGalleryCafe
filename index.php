@@ -86,12 +86,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			<div class="promotions-container">
 				<?php
 
-				$sql = "SELECT * FROM `promotion`";
+				$sql = "SELECT * FROM `promotion` WHERE `ends_at` > NOW() AND `deleted_at` IS NULL;";
 				$result = mysqli_query($conn, $sql);
 
 				while ($row = mysqli_fetch_assoc($result)) {
-					$starts_at = date("Y M d \a\\t H:i A", strtotime($row['starts_at']));
-					$ends_at = date("Y M d \a\\t H:i A", strtotime($row['ends_at']));
+					$starts_at = date("Y M d \a\\t g:i A", strtotime($row['starts_at']));
+					$ends_at = date("Y M d \a\\t g:i A", strtotime($row['ends_at']));
 
 					echo <<< HTML
                     <div class="promotion">
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                                 <span>From {$starts_at}</span>
                             </div>
                             <div>
-                                <span>To {$starts_at}</span>
+                                <span>To {$ends_at}</span>
                             </div>
                         </div>
                     </div>

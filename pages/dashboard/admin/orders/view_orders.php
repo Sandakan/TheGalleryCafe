@@ -76,36 +76,37 @@ $result = mysqli_query($conn, $query);
                         </thead>
                         <tbody>
                             <?php
-                            $BASE_URL = BASE_URL;
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $order_id = $row['id'];
-                                $created_at = date('Y F jS h:i:s A', strtotime($row['created_at']));
-                                $total_amount = $row['total_amount'];
-                                $status = $row['status'];
-                                $reservation_id = $row['reservation_id'];
+
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    $order_id = $row['id'];
+                                    $created_at = date('Y F jS h:i:s A', strtotime($row['created_at']));
+                                    $total_amount = $row['total_amount'];
+                                    $status = $row['status'];
+                                    $reservation_id = $row['reservation_id'];
 
 
-                                $q2 = <<< SQL
-                            SELECT
-                                mi.name,
-                                oi.quantity
-                            FROM
-                                order_item oi
-                                LEFT JOIN menu_item mi ON mi.id = oi.menu_item_id
-                            WHERE
-                                oi.order_id = {$order_id};
-                            SQL;
-                                $res2 = mysqli_query($conn, $q2);
-                                $items = '';
-                                if (mysqli_num_rows($res2) > 0) {
-                                    while ($row = mysqli_fetch_assoc($res2)) {
-                                        $items .= $row['name'] . ' x' . $row['quantity'] . '<br>';
-                                    }
-                                } else $items = 'N/A';
+                                    $q2 = <<< SQL
+                                    SELECT
+                                        mi.name,
+                                        oi.quantity
+                                    FROM
+                                        order_item oi
+                                        LEFT JOIN menu_item mi ON mi.id = oi.menu_item_id
+                                    WHERE
+                                        oi.order_id = {$order_id};
+                                    SQL;
+                                    $res2 = mysqli_query($conn, $q2);
+                                    $items = '';
+                                    if (mysqli_num_rows($res2) > 0) {
+                                        while ($row = mysqli_fetch_assoc($res2)) {
+                                            $items .= $row['name'] . ' x' . $row['quantity'] . '<br>';
+                                        }
+                                    } else $items = 'N/A';
 
-                                $status_buttons = '';
-                                if ($status == 'PENDING') {
-                                    $status_buttons  = <<< HTML
+                                    $status_buttons = '';
+                                    if ($status == 'PENDING') {
+                                        $status_buttons  = <<< HTML
                                     <button class="btn-secondary btn-only-icon" title="Mark order as Completed" onclick="updateOrderStatus($order_id, true)">
                                         <span class="material-symbols-rounded btn-icon">check</span>
                                     </button>
@@ -113,9 +114,9 @@ $result = mysqli_query($conn, $query);
                                         <span class="material-symbols-rounded btn-icon">close</span>
                                     </button>
                                     HTML;
-                                }
+                                    }
 
-                                echo <<< HTML
+                                    echo <<< HTML
                                 <tr class="order">
                                     <td class="order-id">#{$order_id}</td>
                                     <td class="order-date">{$created_at}</td>
@@ -132,6 +133,9 @@ $result = mysqli_query($conn, $query);
                                     </td>
                                 </tr>
                                 HTML;
+                                }
+                            } else {
+                                echo '<tr><td colspan="6" class="no-results">No orders found.</td></tr>';
                             }
                             ?>
                         </tbody>

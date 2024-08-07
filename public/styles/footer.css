@@ -29,6 +29,7 @@ footer {
 .footer-wrapper > .footer-info-container p.info-text {
 	font-size: 1rem;
 	font-weight: 400;
+	padding-right: 2rem;
 }
 
 .footer-wrapper > .footer-info-container p.copyright-text {

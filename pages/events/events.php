@@ -5,7 +5,7 @@ session_start();
 
 $conn = initialize_database();
 
-$sql = "SELECT * FROM `event`";
+$sql = "SELECT * FROM `event` WHERE `ends_at` > NOW() AND `deleted_at` IS NULL;";
 $result = mysqli_query($conn, $sql);
 
 if (!$result) {

@@ -100,11 +100,7 @@ $BASE_URL = BASE_URL;
                                         HTML;
                                 }
                             } else {
-                                echo <<< HTML
-                                        <tr class="order">
-                                                <td colspan="4">No Reservations found</td>
-                                        </tr>
-                                    HTML;
+                                echo '<tr><td colspan="5" class="no-results">No reservations found.</td></tr>';
                             }
                             ?>
                         </tbody>

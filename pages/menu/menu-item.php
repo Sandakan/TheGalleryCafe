@@ -7,6 +7,11 @@ $conn = initialize_database();
 session_start();
 
 
+function replaceUnderscoreWithSpaceAndConvertToCapitalCase($str)
+{
+    return ucwords(str_replace('_', ' ', strtolower($str)));
+}
+
 if (!isset($_GET['product-id'])) {
     header('Location: ' . BASE_URL . '/pages/menu/menu.php');
     exit();
@@ -66,7 +71,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-$query = "SELECT * FROM menu_item WHERE id = $menu_item_id LIMIT 1";
+$query = <<< SQL
+SELECT
+	menu_item.id,
+	menu_item.`name`,
+	menu_item.`description`,
+	menu_item.`price`,
+	menu_item.`type`,
+	menu_item.`category`,
+	menu_item.`image`,
+	cuisine.`name` AS cuisine_type 
+FROM
+	menu_item
+	INNER JOIN cuisine ON menu_item.cuisine_id = cuisine.id 
+WHERE
+	menu_item.id = $menu_item_id
+	LIMIT 1;
+SQL;
+
 $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_assoc($result);
 
@@ -91,20 +113,39 @@ mysqli_close($conn);
 
     <?php
     if ($row) {
+        $menu_item_category = replaceUnderscoreWithSpaceAndConvertToCapitalCase($row['category']);
+        $menu_item_type = replaceUnderscoreWithSpaceAndConvertToCapitalCase($row['type']);
+        $menu_item_cuisine = replaceUnderscoreWithSpaceAndConvertToCapitalCase($row['cuisine_type']);
+
     ?>
         <div class="model-container menu-item-container-model">
             <div class="model menu-item-model">
                 <div class="menu-item-image-container">
-                    <img src="<?= BASE_URL ?>/public/images/menu-items/<?php echo $row['image']; ?>" alt="">
+                    <img src="<?= BASE_URL ?>/public/images/menu-items/<?= $row['image']; ?>" alt="">
                 </div>
                 <div class="menu-item-info-and-actions-container">
                     <div class="menu-item-info-container">
-                        <h2 class="menu-item-title"><?php echo $row['name']; ?></h2>
-                        <b class="menu-item-price">LKR <?php echo $row['price']; ?></b>
-                        <p class="menu-item-description"><?php echo $row['description']; ?></p>
+                        <h2 class="menu-item-title"><?= $row['name']; ?></h2>
+                        <b class="menu-item-price">LKR <?= $row['price']; ?></b>
+                        <p class="menu-item-description"><?= $row['description']; ?></p>
+
+                        <div class="menu-item-features-container">
+                            <div class="menu-item-feature" title="Category: <?= $menu_item_category ?>">
+                                <span class="material-symbols-rounded">category</span>
+                                <span class="feature-text"><?= $menu_item_category ?></span>
+                            </div>
+                            <div class="menu-item-feature" title="Type: <?= $menu_item_type ?>">
+                                <span class="material-symbols-rounded">fastfood</span>
+                                <span class="feature-text"><?= $menu_item_type ?></span>
+                            </div>
+                            <div class="menu-item-feature" title="Cuisine: <?= $menu_item_cuisine ?>">
+                                <span class="material-symbols-rounded">restaurant</span>
+                                <span class="feature-text"><?= $menu_item_cuisine ?></span>
+                            </div>
+                        </div>
                     </div>
 
-                    <form class="menu-item-actions-container" method="POST" action="<?php echo htmlspecialchars($_SERVER["REQUEST_URI"]); ?>">
+                    <form class="menu-item-actions-container" method="POST" action="<?= htmlspecialchars($_SERVER["REQUEST_URI"]); ?>">
                         <button type="submit" class="btn-primary">Add to Cart</button>
                         <div class="cart-items-incrementing-actions-container">
                             <button type="button" class="btn-secondary" onclick="decrementQuantity()"><span class="material-symbols-rounded">remove</span></button>

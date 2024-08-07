@@ -3,7 +3,7 @@
 	--secondary-font-color: #ffffff;
 
 	--primary-background-color: #fff;
-	--secondary-background-color: #f5f6fa;
+	--secondary-background-color: hsl(230, 33%, 95%);
 	--primary-highlight-color: #f0e6db;
 	--secondary-highlight-color: var(--primary-font-color, #000);
 

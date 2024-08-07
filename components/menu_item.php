@@ -21,7 +21,7 @@ function renderMenuItem(int $id, string $title, string $price, string $image, bo
 {
     $addToCartButtonLink = BASE_URL . '/pages/menu/menu-item.php?product-id=' . $id;
     $addToCartButton = $showAddToCartButton ? '<a href="' . $addToCartButtonLink . '" class="btn-secondary">More Info</a>' : '';
-    echo <<< HTML
+    $menu_item = <<< HTML
     <div class="menu-item">
         <div class="menu-item-image">
             <img src="$image" alt="Black Cookie Latte">
@@ -34,4 +34,6 @@ function renderMenuItem(int $id, string $title, string $price, string $image, bo
       $addToCartButton
     </div>
     HTML;
+
+    return $menu_item;
 }

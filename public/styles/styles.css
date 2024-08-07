@@ -125,7 +125,7 @@ li > a:hover {
 	-moz-box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.05); */
 }
 
-.input-container > :is(input, select, textarea):focus {
+:is(.input-container, .search-input-container) > :is(input, select, textarea):focus {
 	border-color: var(--primary-font-color);
 }
 
@@ -152,11 +152,12 @@ li > a:hover {
 
 input[type='search'] {
 	background-color: var(--secondary-background-color);
-	border: 3px solid var(--primary-font-color);
+	border: 3px solid var(--secondary-background-color);
 	outline: none;
 	padding: 0.75rem 1rem;
 	border-radius: 5rem;
 	min-width: 15rem;
+	transition: border-color 0.2s ease-in-out;
 }
 
 .search-input-container {

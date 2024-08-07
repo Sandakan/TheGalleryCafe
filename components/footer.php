@@ -21,10 +21,8 @@
             <div class="link-block">
                 <h4>Support</h4>
                 <ul>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Locate</a></li>
-                    <li><a href="#">Accessibility</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/pages/contact_us.php">Contact Us</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>/pages/about_us.php">About Us</a></li>
                 </ul>
             </div>
             <div class="link-block">

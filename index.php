@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 <body>
 	<?php require('components/header_navigation_bar.php'); ?>
 
-	<section class="hero">
+	<section class="hero index-hero">
 		<div class="hero-image-container"></div>
 		<div class="hero-text-container">
 			<img src="public/images/logo.webp" alt="logo" />

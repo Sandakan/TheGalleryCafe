@@ -80,10 +80,12 @@ SELECT
 	menu_item.`type`,
 	menu_item.`category`,
 	menu_item.`image`,
+	menu.`name` AS menu_name,
 	cuisine.`name` AS cuisine_type 
 FROM
 	menu_item
 	INNER JOIN cuisine ON menu_item.cuisine_id = cuisine.id 
+	INNER JOIN menu ON menu_item.menu_id = menu.id 
 WHERE
 	menu_item.id = $menu_item_id
 	LIMIT 1;
@@ -125,6 +127,7 @@ mysqli_close($conn);
                 </div>
                 <div class="menu-item-info-and-actions-container">
                     <div class="menu-item-info-container">
+                        <h4 class="menu-item-sub-title"><?= strtoupper($row['menu_name']); ?></h4>
                         <h2 class="menu-item-title"><?= $row['name']; ?></h2>
                         <b class="menu-item-price">LKR <?= $row['price']; ?></b>
                         <p class="menu-item-description"><?= $row['description']; ?></p>

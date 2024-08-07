@@ -285,3 +285,7 @@ section.meet-our-team > .team-members-container > .team-member > p {
 .contact-form > .btn-primary {
 	margin-top: 2rem;
 }
+
+section.promotions {
+	padding-top: 0 !important;
+}

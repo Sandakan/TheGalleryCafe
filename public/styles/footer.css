@@ -39,7 +39,7 @@ footer {
 	display: flex;
 	gap: 2rem 5rem;
 	flex-wrap: wrap;
-	justify-content: end;
+	/* justify-content: end; */
 }
 
 .footer-links-container > .link-block h4 {

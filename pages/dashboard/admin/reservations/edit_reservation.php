@@ -230,7 +230,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="alert-content">
                                 <p class="alert-text">A pre-order #<?= $current_reservation_pre_order_id ?> has been created for this reservation. Go to Orders tab to view and edit the pre-order linked to this reservation.</p>
-                                <a href="<?= BASE_URL; ?>/pages/dashboard/admin/orders/edit_order?order_id=<?= $current_reservation_pre_order_id; ?>.php" class="btn-secondary">Edit Order #<?= $current_reservation_pre_order_id ?></a>
+                                <a href="<?= BASE_URL; ?>/pages/dashboard/admin/orders/edit_order.php?order_id=<?= $current_reservation_pre_order_id; ?>" class="btn-secondary">Edit Order #<?= $current_reservation_pre_order_id ?></a>
                             </div>
                         </div>
                     <?php } ?>
@@ -244,7 +244,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <?php
 
                                     for ($i = 1; $i <= $max_no_of_people; $i++) {
-                                        $is_selected = ($i == $current_reservation_no_of_people) ? "selected" : "";
+                                        $selected = ($i == $current_reservation_no_of_people) ? "selected" : "";
                                         if ($i == 1) echo "<option value='$i' $selected>$i person</option>";
                                         else echo "<option value='$i' $selected>$i people</option>";
                                     }

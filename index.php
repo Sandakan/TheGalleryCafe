@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	<link rel="stylesheet" href="public/styles/fonts.css">
 	<link rel="stylesheet" href="public/styles/home.css">
 	<link rel="stylesheet" href="public/styles/menu.css">
+	<link rel="stylesheet" href="public/styles/events_and_promotions.css">
 	<link rel="shortcut icon" href="public/images/logo.webp" type="image/x-icon">
 </head>
 
@@ -57,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 				</div>
 			</div>
 		</section>
+
 		<section class="featured-menus-container">
 			<div class="featured-menu-info">
 				<h3>Featured Menus</h3>
@@ -71,6 +73,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 					while ($row = mysqli_fetch_assoc($result)) {
 						echo renderMenuItem(intval($row['id']), $row['name'], $row['price'], BASE_URL . '/public/images/menu-items/' . $row['image']);
 					}
+				}
+				?>
+			</div>
+		</section>
+
+		<section class="promotions">
+			<div class="promotions-info">
+				<h1>Current Promotions</h1>
+				<p>Don't miss out on our exclusive promotions! Enjoy special discounts, limited-time offers, and exciting deals on your favorite dishes and beverages. Check back often to take advantage of these fantastic savings and enhance your dining experience with us.</p>
+			</div>
+			<div class="promotions-container">
+				<?php
+
+				$sql = "SELECT * FROM `promotion`";
+				$result = mysqli_query($conn, $sql);
+
+				while ($row = mysqli_fetch_assoc($result)) {
+					$starts_at = date("Y M d \a\\t H:i A", strtotime($row['starts_at']));
+					$ends_at = date("Y M d \a\\t H:i A", strtotime($row['ends_at']));
+
+					echo <<< HTML
+                    <div class="promotion">
+                        <span class="promotion-icon material-symbols-rounded">sell</span>
+                        <h2 class="promotion-name">{$row['name']}</h2>
+                        <p class="promotion-description">{$row['description']}</p>
+                        <div class="promotion-duration">
+                            <div>
+                                <span>From {$starts_at}</span>
+                            </div>
+                            <div>
+                                <span>To {$starts_at}</span>
+                            </div>
+                        </div>
+                    </div>
+                    HTML;
 				}
 				?>
 			</div>

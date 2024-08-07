@@ -146,6 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="register-form-actions-container">
                     <button class="btn-primary form-submit-btn" type="submit">Create Account</button>
+                    <p class="accept-terms-text">By continuing, you agree to our <a href="../terms_of_service.php">Terms of Service</a> and <a href="../privacy-policy.php">Privacy Policy</a>.</p>
                     <div class="create-account-link-container"><a href="./login.php">Already a member? Then, login to your account.</a></div>
                 </div>
             </form>

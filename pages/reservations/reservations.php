@@ -176,7 +176,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         echo "<script>alert('Reservation created successfully!');</script>";
-        header("Location: " . BASE_URL . "/index.php");
+        header("Location: " . BASE_URL . "/pages/reservations/reservation_placed.php");
         exit();
     } else echo "<script>alert('No available table found!');</script>";
 }

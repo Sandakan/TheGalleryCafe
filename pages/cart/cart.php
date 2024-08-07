@@ -71,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $q4 = "UPDATE cart SET deleted_at = NOW() WHERE id = $cartId AND deleted_at IS NULL";
                 if (mysqli_query($conn, $q4)) {
                     echo "<script>alert('Order created successfully!');</script>";
+                    header("Location: " . BASE_URL . "/pages/cart/order_placed.php");
                 } else echo "<script>alert('Failed to delete cart: " . mysqli_error($conn) . "');</script>";
             } else echo "<script>alert('Failed to create order: " . mysqli_error($conn) . "');</script>";
         } else echo "<script>alert('Failed to create order: " . mysqli_error($conn) . "');</script>";

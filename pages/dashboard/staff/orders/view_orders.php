@@ -30,6 +30,8 @@ SELECT
     o.reservation_id
 FROM
     `order` o
+WHERE
+o.deleted_at IS NULL
 ORDER BY
      o.status ASC, o.created_at DESC;
 SQL;

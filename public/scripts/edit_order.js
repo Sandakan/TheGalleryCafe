@@ -66,7 +66,7 @@ function addToOrder(itemId, orderId) {
 		},
 		body: `reason=add_item_to_order&menu_item_id=${itemId}&order_id=${orderId}`,
 	}).then(async (response) => {
-		alert(await response.text());
+		// alert(await response.text());
 		location.reload();
 	});
 }

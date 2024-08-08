@@ -1,4 +1,7 @@
 function deleteEvent(eventId) {
+	const isConfirmed = confirm('Are you sure you want to delete this event?');
+	if (!isConfirmed) return;
+
 	fetch(`view_events.php`, {
 		method: 'POST',
 		headers: {

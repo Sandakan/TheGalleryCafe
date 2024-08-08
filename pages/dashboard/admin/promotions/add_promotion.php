@@ -8,40 +8,10 @@ session_start();
 
 authenticate(array('ADMIN'));
 $promotion_name = $promotion_description = $promotion_starts_at = $promotion_ends_at = $promotion_discount_percentage =  "";
-$current_promotion_name = $current_promotion_description = $current_promotion_starts_at = $current_promotion_ends_at = $current_promotion_discount_percentage = "";
 $promotion_name_error = $promotion_description_error = $promotion_starts_at_error = $promotion_ends_at_error = $promotion_discount_percentage_error = "";
 
 $is_error = false;
 
-if (!isset($_GET['promotion_id'])) {
-    echo "Promotion ID not found";
-    exit();
-}
-$promotion_id = sanitize_input($_GET['promotion_id']);
-
-$q = <<<SQL
-    SELECT * FROM `promotion` WHERE `id` = {$_GET['promotion_id']} LIMIT 1;
-SQL;
-
-$result = mysqli_query($conn, $q);
-
-if (!$result) {
-    echo "Error: " . mysqli_error($conn);
-    exit();
-} else {
-    $promotion = mysqli_fetch_assoc($result);
-
-    if (!$promotion) {
-        echo "Promotion not found";
-        exit();
-    } else {
-        $current_promotion_name = $promotion_name = $promotion['name'];
-        $current_promotion_description = $promotion_description = $promotion['description'];
-        $current_promotion_starts_at = $promotion_starts_at = $promotion['starts_at'];
-        $current_promotion_ends_at = $promotion_ends_at = $promotion['ends_at'];
-        $current_promotion_discount_percentage = $promotion_discount_percentage = $promotion['discount_percentage'];
-    }
-}
 
 function sanitize_input($data)
 {
@@ -54,7 +24,7 @@ function sanitize_input($data)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $promotion_name = sanitize_input($_POST["name"]);
     if (!empty($_POST["name"]) && !preg_match("/^[a-zA-Z ]+$/", $promotion_name)) {
-        $promotion_name_error = "Name can only contain letters and spaces";
+        $promotion_name_error = "Only letters and white space allowed";
         $is_error = true;
     }
 
@@ -82,10 +52,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if (!$is_error) {
-        $query = "UPDATE `promotion` SET `name` = '$promotion_name', `description` = '$promotion_description', `starts_at` = '$promotion_starts_at', `ends_at` = '$promotion_ends_at', `discount_percentage` = '$promotion_discount_percentage',  `updated_at` = NOW() WHERE `id` = {$promotion_id}";
+        $query = "INSERT INTO promotion(name, description, discount_percentage, starts_at, ends_at) VALUES ('$promotion_name', '$promotion_description', '$promotion_discount_percentage', '$promotion_starts_at', '$promotion_ends_at');";
 
         if (mysqli_query($conn, $query)) {
-            echo "<script>alert('Promotion updated successfully!');</script>";
+            echo "<script>alert('Promotion added successfully!');</script>";
             header("Location: " . BASE_URL . "/pages/dashboard/admin/promotions/view_promotions.php");
             exit();
         } else {
@@ -102,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Update Promotion #<?= $promotion_id ?> - The Gallery Café</title>
+    <title>Add New Promotion - The Gallery Café</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/styles/styles.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/styles/fonts.css">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/styles/dashboard.css">
@@ -120,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="dashboard-content-container">
                 <div class="dashboard-content admin-dashboard-promotions">
                     <header>
-                        <h2>Update Promotion #<?= $promotion_id ?></h2>
+                        <h2>Add New Promotion</h2>
                     </header>
 
                     <form class="register-form" method="POST" action="<?= htmlspecialchars($_SERVER["REQUEST_URI"]); ?>">

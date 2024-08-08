@@ -37,6 +37,22 @@
 	width: 100%;
 }
 
+.promotion > .promotion-icon-and-discount {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+.promotion > .promotion-icon-and-discount > .promotion-icon {
+	margin-bottom: 0;
+}
+
+.promotion > .promotion-icon-and-discount > .promotion-discount {
+	font-size: 2rem;
+	font-weight: 700;
+}
+
 :is(.event-icon, .promotion-icon).material-symbols-rounded {
 	font-size: 2.5rem;
 	margin-bottom: 1rem;

@@ -176,7 +176,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
         echo "<script>alert('Reservation created successfully!');</script>";
-        header("Location: " . BASE_URL . "/pages/reservations/reservation_placed.php");
+        header("Location: " . BASE_URL . "/pages/reservations/reservation_placed.php?reservation_id=" . $reservation_id);
         exit();
     } else echo "<script>alert('No available table found!');</script>";
 }
@@ -254,7 +254,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="account">
                     <div class="account-info"><span class="material-symbols-rounded-filled">account_circle</span> <?php echo $_SESSION['user_first_name'] . ' ' . $_SESSION['user_last_name']; ?></div>
-                    <button type="submit" class="btn-secondary" onclick="logout('<?= BASE_URL ?>')" title="Create reservation using a different account (Will be logged out automatically)">Use another account</button>
+                    <button type="button" class="btn-secondary" onclick="logout('<?= BASE_URL ?>')" title="Create reservation using a different account (Will be logged out automatically)">Use another account</button>
 
                 </div>
             </div>

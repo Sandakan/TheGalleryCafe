@@ -18,6 +18,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "<script>alert('Order status updated successfully!');</script>";
         } else echo "<script>alert('Failed to change order status: " . mysqli_error($conn) . "');</script>";
     }
+
+    if ($_POST['reason'] == 'delete_order' && isset($_POST['order_id'])) {
+        $order_id = $_POST['order_id'];
+        $q = "UPDATE `order` SET `deleted_at` = NOW() WHERE `id` = {$order_id};";
+
+        if (mysqli_query($conn, $q)) {
+            echo "<script>alert('Order deleted successfully!');</script>";
+        } else echo "<script>alert('Failed to delete order: " . mysqli_error($conn) . "');</script>";
+    }
 }
 
 $query = <<< SQL
@@ -29,6 +38,8 @@ SELECT
     o.reservation_id
 FROM
     `order` o
+WHERE
+    o.deleted_at IS NULL
 ORDER BY
      o.status ASC, o.created_at DESC;
 SQL;
@@ -129,6 +140,9 @@ $result = mysqli_query($conn, $query);
                                             <a href="{$BASE_URL}/pages/dashboard/admin/orders/edit_order.php?order_id={$order_id}" class="btn-secondary btn-only-icon" title="Edit Order">
                                                 <span class="material-symbols-rounded btn-icon">edit</span>
                                             </a>
+                                            <button class="btn-secondary btn-only-icon" title="Delete order" onclick="deleteOrder($order_id)">
+                                                <span class="material-symbols-rounded btn-icon">delete</span>
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>

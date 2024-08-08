@@ -53,7 +53,7 @@ function sanitize_input($data)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $event_name = sanitize_input($_POST["name"]);
     if (!empty($_POST["name"]) && !preg_match("/^[a-zA-Z ]+$/", $event_name)) {
-        $name_error = "Only letters and white space allowed";
+        $event_name_error = "Only letters and white space allowed";
         $is_error = true;
     }
 

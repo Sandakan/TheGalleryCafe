@@ -1,4 +1,10 @@
 function changeItemQuantity(cartItemId, currentQuantity, incrementingValue) {
+	const newQuantity = currentQuantity + incrementingValue;
+	if (newQuantity <= 0) {
+		const isRemovingItem = confirm('Are you sure you want to remove this item from the cart?');
+		if (!isRemovingItem) return;
+	}
+
 	fetch(`cart.php`, {
 		method: 'POST',
 		headers: {
@@ -19,6 +25,6 @@ function confirmOrder(cartId) {
 		},
 		body: `reason=confirm_order&cart_id=${cartId}`,
 	}).then(async (response) => {
-		location.reload();
+		// location.reload();
 	});
 }

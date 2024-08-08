@@ -1,4 +1,7 @@
 function deleteReservation(reservationId) {
+	const isConfirmed = confirm('Are you sure you want to delete this reservation?');
+	if (!isConfirmed) return;
+
 	fetch(`view_reservations.php`, {
 		method: 'POST',
 		headers: {

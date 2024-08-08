@@ -15,6 +15,7 @@
 }
 
 .menu-item-image-container > img {
+	width: 100%;
 	max-height: 30rem;
 	object-fit: cover;
 	border-radius: 1rem;

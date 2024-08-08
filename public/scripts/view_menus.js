@@ -1,4 +1,7 @@
 function deleteMenu(menuId) {
+	const isConfirmed = confirm('Are you sure you want to delete this menu?');
+	if (!isConfirmed) return;
+
 	fetch(`view_menus.php`, {
 		method: 'POST',
 		headers: {

@@ -41,10 +41,14 @@ if (!$result) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     $starts_at = date("Y M d \a\\t g:i A", strtotime($row['starts_at']));
                     $ends_at = date("Y M d \a\\t g:i A", strtotime($row['ends_at']));
+                    $discounted_price =  ($row['discount_percentage'] * 100);
 
                     echo <<< HTML
                     <div class="promotion">
-                        <span class="promotion-icon material-symbols-rounded">sell</span>
+                        <div class="promotion-icon-and-discount">
+                            <span class="promotion-icon material-symbols-rounded">sell</span>
+                            <span class="promotion-discount"> -{$discounted_price}%</span>
+                        </div>
                         <h2 class="promotion-name">{$row['name']}</h2>
                         <p class="promotion-description">{$row['description']}</p>
                         <div class="promotion-duration">

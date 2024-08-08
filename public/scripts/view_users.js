@@ -1,4 +1,7 @@
 function deleteUser(userId) {
+	const isDeleting = confirm('Are you sure you want to delete this user?');
+	if (!isDeleting) return;
+
 	fetch(`view_users.php`, {
 		method: 'POST',
 		headers: {

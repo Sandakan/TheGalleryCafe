@@ -1,4 +1,4 @@
-function getReservationTimeSlots(BASE_URL) {
+function getReservationTimeSlots(BASE_URL, current) {
 	const numberOfPeopleInput = document.getElementById('no_of_people');
 	const reservationDateInput = document.getElementById('reservation_date');
 	const responseContainer = document.getElementById('find-table-model-response-container');
@@ -11,13 +11,15 @@ function getReservationTimeSlots(BASE_URL) {
 		// check if the reservation date is in the part
 		const currentDate = new Date(new Date().toDateString()).getTime();
 		const reservationDateObj = new Date(reservationDate).getTime();
-		console.log(currentDate, reservationDateObj, currentDate > reservationDateObj);
-		if (currentDate > reservationDateObj) {
-			return alert('Please select a future date');
-		}
-
 		// reservation time options container
 		const reservationTimeInput = document.getElementById('reservation_time');
+
+		console.log(currentDate, reservationDateObj, currentDate > reservationDateObj);
+		if (currentDate > reservationDateObj) {
+			reservationTimeInput.innerHTML =
+				'<option value="" selected disabled hidden>Select your preferred reservation time</option>';
+			return alert('Please select a future date');
+		}
 
 		fetch(`${BASE_URL}/pages/reservations/reservations.server.php`, {
 			method: 'POST',
@@ -30,7 +32,8 @@ function getReservationTimeSlots(BASE_URL) {
 			.then((res) => {
 				console.log(res);
 
-				reservationTimeInput.innerHTML = '';
+				reservationTimeInput.innerHTML =
+					'<option value="" selected disabled hidden>Select your preferred reservation time</option>';
 				const option = document.createElement('option');
 				option.value = '';
 				option.textContent = 'Select your preferred reservation time';

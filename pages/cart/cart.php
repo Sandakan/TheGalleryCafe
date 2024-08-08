@@ -70,8 +70,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // delete cart
                 $q4 = "UPDATE cart SET deleted_at = NOW() WHERE id = $cartId AND deleted_at IS NULL";
                 if (mysqli_query($conn, $q4)) {
-                    echo "<script>alert('Order created successfully!');</script>";
-                    header("Location: " . BASE_URL . "/pages/cart/order_placed.php");
+                    header("Location: " . BASE_URL . "/pages/cart/order_placed.php?order_id=" . $orderId);
+                    exit();
                 } else echo "<script>alert('Failed to delete cart: " . mysqli_error($conn) . "');</script>";
             } else echo "<script>alert('Failed to create order: " . mysqli_error($conn) . "');</script>";
         } else echo "<script>alert('Failed to create order: " . mysqli_error($conn) . "');</script>";
@@ -214,9 +214,11 @@ function renderCartItem($row)
             </table>
 
             <?php if ($cart_items_count > 0) { ?>
-                <div class="cart-actions-container">
-                    <button type="button" class="btn btn-primary" onclick="confirmOrder(<?= $cart_id ?>)">Confirm Order</button>
-                </div>
+                <form class="cart-actions-container" method="POST" action="<?= htmlspecialchars($_SERVER["REQUEST_URI"]); ?>">
+                    <input type="hidden" name="reason" value="confirm_order">
+                    <input type="hidden" name="cart_id" value="<?= $cart_id; ?>">
+                    <button type="submit" class="btn btn-primary">Confirm Order</button>
+                </form>
             <?php } ?>
 
         </section>

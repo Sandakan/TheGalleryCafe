@@ -14,6 +14,10 @@
 	background-color: var(--primary-highlight-color);
 }
 
+.reservation-model :is(input, select) {
+	background-color: hsla(0, 0%, 100%, 0.7);
+}
+
 .reservation-model > h2 {
 	font-size: 2rem;
 	font-weight: 600;

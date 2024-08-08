@@ -59,6 +59,8 @@
 .menus-container > .menu-info > .menu-search-form > .menu-filters {
 	display: flex;
 	gap: 0.5rem;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .menu-filters > .filter {

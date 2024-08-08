@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $cart_id = $row['id'];
 
                 // check if cart item that matches the relevant menu item exists in the cart
-                $sql = "SELECT * FROM cart_item WHERE cart_id = $cart_id AND menu_item_id = $menu_item_id";
+                $sql = "SELECT * FROM cart_item WHERE cart_id = $cart_id AND menu_item_id = $menu_item_id AND deleted_at IS NULL";
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result) == 1) {
                     // cart item exists in the cart

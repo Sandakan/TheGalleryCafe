@@ -39,7 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			<img src="public/images/logo.webp" alt="logo" />
 			<h1>A gallery of <br> memorable taste</h1>
 			<p>A place where friends gather, families celebrate, and visitors get a taste of Sri Lanka's rich cultural heritage.</p>
-			<a class="btn-primary join-us-btn" href="./pages/auth/register.php">Join With Us</a>
+
+			<?php if (!isset($_SESSION['user_id'])) { ?>
+				<a class="btn-primary join-us-btn" href="./pages/auth/register.php">Join With Us</a>
+			<?php } else { ?>
+				<a class="btn-primary join-us-btn" href="./pages/reservations/reservations.php">Make a reservation</a>
+			<?php } ?>
 		</div>
 	</section>
 
@@ -92,10 +97,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 				while ($row = mysqli_fetch_assoc($result)) {
 					$starts_at = date("Y M d \a\\t g:i A", strtotime($row['starts_at']));
 					$ends_at = date("Y M d \a\\t g:i A", strtotime($row['ends_at']));
+					$discounted_price =  ($row['discount_percentage'] * 100);
 
 					echo <<< HTML
                     <div class="promotion">
-                        <span class="promotion-icon material-symbols-rounded">sell</span>
+                        <div class="promotion-icon-and-discount">
+                            <span class="promotion-icon material-symbols-rounded">sell</span>
+                            <span class="promotion-discount"> -{$discounted_price}%</span>
+                        </div>
                         <h2 class="promotion-name">{$row['name']}</h2>
                         <p class="promotion-description">{$row['description']}</p>
                         <div class="promotion-duration">

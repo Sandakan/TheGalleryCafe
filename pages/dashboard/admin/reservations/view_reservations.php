@@ -26,6 +26,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!$res2) {
             echo mysqli_error($conn);
         }
+
+        $q3 = <<<SQL
+            UPDATE `order` SET `deleted_at` = NOW() WHERE `reservation_id` = {$_POST['reservation_id']};
+        SQL;
+
+        $res3 = mysqli_query($conn, $q3);
+        if (!$res3) {
+            echo mysqli_error($conn);
+        }
+
+        echo "success";
     }
 }
 
@@ -42,7 +53,7 @@ FROM
 LEFT JOIN `table_reservation` tr ON r.table_reservation_id = tr.id
 LEFT JOIN `order` o ON o.reservation_id = r.id
 WHERE
-    r.deleted_at IS NULL
+    r.deleted_at IS NULL AND o.deleted_at IS NULL
 ORDER BY
     DATEDIFF(tr.starts_at, NOW()) DESC;
 SQL;

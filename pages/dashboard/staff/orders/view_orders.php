@@ -64,7 +64,8 @@ $result = mysqli_query($conn, $query);
             <div class="dashboard-content-container">
                 <div class="dashboard-content staff-dashboard-orders">
                     <header>
-                        <h2>Orders</h2><a href="<?php echo BASE_URL; ?>/pages/cart/cart.php" class="btn-secondary"><span class="material-symbols-rounded btn-icon">add</span><span>Add Order in Cart</span></a>
+                        <h2>Orders</h2>
+                        <!-- <a href="<?php echo BASE_URL; ?>/pages/cart/cart.php" class="btn-secondary"><span class="material-symbols-rounded btn-icon">add</span><span>Add Order in Cart</span></a> -->
                     </header>
 
                     <table class="orders-container">

@@ -78,7 +78,7 @@ $result = mysqli_query($conn, $query);
                 <div class="dashboard-content staff-dashboard-reservations">
                     <header>
                         <h2>Reservations</h2>
-                        <a href="<?php echo BASE_URL; ?>/pages/reservations/reservations.php" class="btn-secondary"><span class="material-symbols-rounded btn-icon">add</span><span>Add Reservation</span></a>
+                        <!-- <a href="<?php echo BASE_URL; ?>/pages/reservations/reservations.php" class="btn-secondary"><span class="material-symbols-rounded btn-icon">add</span><span>Add Reservation</span></a> -->
                     </header>
 
                     <table class="reservations-container">

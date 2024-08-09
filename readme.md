@@ -1,10 +1,13 @@
-# The Gallery Café Website
+# [The Gallery Café Website](https://github.com/Sandakan/TheGalleryCafe)
 
 A dynamic, database-driven web application designed to enhance customer experience for The Gallery Café in Colombo.
 Features include an attractive and user-friendly interface, online table reservations, pre-ordering capabilities,
 detailed menus, high-quality images, and user account management for admins, operational staff, and customers. Developed
 using modern web technologies for front-end and back-end functionalities, ensuring a seamless and engaging user
 experience.
+
+Initial Figma design for this website can be found
+[here](https://www.figma.com/design/m4hjzkCX4neCWxMEINX0pS/The-Gallery-Cafe?node-id=223-2526&t=pzHELjAOtfxDG1Wb-1).
 
 ## Prerequisites
 

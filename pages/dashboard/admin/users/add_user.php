@@ -67,7 +67,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!$is_error) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $query = "INSERT INTO user (first_name, last_name, email, contact_number, password) VALUES ('$first_name', '$last_name', '$email', '$contact_number', '$hashed_password')";
+        $query = <<< SQL
+        INSERT INTO 
+            user (first_name, last_name, email, contact_number, password) 
+        VALUES 
+            ('$first_name', '$last_name', '$email', '$contact_number', '$hashed_password');
+        SQL;
 
         if (mysqli_query($conn, $query)) {
             echo "<script>alert('User added successfully!');</script>";

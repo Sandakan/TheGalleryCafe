@@ -150,7 +150,7 @@ if (isset($_GET['filter']) && !empty($_GET['filter'])) {
                 HTML;
             }
         } else {
-            $sql = "SELECT id, name, description FROM menu";
+            $sql = "SELECT id, name, description FROM menu WHERE deleted_at IS NULL";
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {

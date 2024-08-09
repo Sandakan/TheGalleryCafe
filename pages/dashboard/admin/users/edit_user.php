@@ -22,6 +22,7 @@ if (!isset($_GET['user_id'])) {
     exit();
 } else if ($_GET['user_id'] == $_SESSION['user_id']) {
     echo "You cannot edit your own account";
+    header("Location: " . BASE_URL . "/pages/profile/edit_user_information.php");
     exit();
 }
 

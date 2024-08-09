@@ -3,7 +3,19 @@ $conn = initialize_database();
 
 $cart_items_count = 0;
 if (isset($_SESSION["user_id"])) {
-	$cartItemsCountQuery = "SELECT COUNT(*) AS number_of_items FROM cart_item ci JOIN cart c ON ci.cart_id = c.id WHERE c.user_id = 1 AND ci.deleted_at IS NULL AND c.deleted_at IS NULL";
+	$cartItemsCountQuery = <<< SQL
+	SELECT 
+		COUNT(*) AS number_of_items 
+	FROM 
+		cart_item ci 
+	JOIN 
+		cart c ON ci.cart_id = c.id 
+	WHERE 
+		c.user_id = 1 
+		AND ci.deleted_at IS NULL 
+		AND c.deleted_at IS NULL;
+	SQL;
+
 	$cartItemsCountResult = mysqli_query($conn, $cartItemsCountQuery);
 	$cartItemsCountRow = mysqli_fetch_assoc($cartItemsCountResult);
 	$cart_items_count = $cartItemsCountRow['number_of_items'];

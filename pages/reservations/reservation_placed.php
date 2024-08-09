@@ -37,8 +37,7 @@ LEFT JOIN
     `order` ON `order`.`reservation_id` = `reservation`.`id`
 WHERE
     `reservation`.`id` = $reservation_id
-    AND `reservation`.`deleted_at` IS NULL
-    AND `table_reservation`.`deleted_at` IS NULL;
+    AND `reservation`.`deleted_at` IS NULL;
 SQL;
 
 $res = mysqli_query($conn, $sql);

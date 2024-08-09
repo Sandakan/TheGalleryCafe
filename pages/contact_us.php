@@ -4,6 +4,14 @@ require('../utils/database.php');
 session_start();
 
 $conn = initialize_database();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
+
+    header("Location: mailto:" . $email . "?subject=Contact Us&body=" . $message);
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +40,7 @@ $conn = initialize_database();
 
     <main class="">
         <section class="contact-info-container">
-            <form class="contact-form" action="submit_contact_form.php" method="POST">
+            <form class="contact-form" action="<?= htmlspecialchars($_SERVER["REQUEST_URI"]); ?>" method="POST">
                 <h2>Get in Touch</h2>
                 <p>Feel free to reach out to us anytime. Your feedback is important to us and will help us improve our services.</p>
 

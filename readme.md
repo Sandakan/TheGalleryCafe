@@ -16,7 +16,7 @@ Initial Figma design for this website can be found
 
 ## Installation
 
-- #### With WAMP Server
+- #### Server configuration using WAMP Server
 
   - Make sure the WAMP Server is installed and running
   - Clone the repository to the `www` folder in the root directory of the WAMP server
@@ -28,3 +28,16 @@ Initial Figma design for this website can be found
 > Ensure the `BASE_URL` variable in the `config.php` file is set to the correct URL. This is required for the static
 > files to appear correctly in the browser. For example, if the URL to the `index.php` file on your browser's address
 > bar is `http://localhost/TheGalleryCafe/index.php`, then the BASE_URL would be `http://localhost/TheGalleryCafe`.
+
+- #### Database configuration
+
+  - Import the [thegallerycafe_with_seeds.sql](/utils/thegallerycafe_with_seeds.sql) file (includes seed data) in the
+    `utils` folder into the mysql server.
+  - Configure the database credentails in the `config.php` file
+
+  User credentials
+
+  ```
+  Admin - admin@gmail.com - 12345678
+  Staff - staff@gmail.com - 12345678
+  ```

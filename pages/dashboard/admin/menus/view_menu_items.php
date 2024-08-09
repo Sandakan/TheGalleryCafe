@@ -83,6 +83,7 @@ $menu_items  = mysqli_fetch_all($result, MYSQLI_ASSOC);
     <?php include('../../../../components/header_navigation_bar.php'); ?>
 
     <main>
+        <h1>Admin Dashboard</h1>
         <div class="dashboard-container">
 
             <?php include('../../../../components/admin_dashboard_side_nav.php'); ?>

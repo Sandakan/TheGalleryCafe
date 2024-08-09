@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include('../../components/header_navigation_bar.php'); ?>
 
     <main>
-
+        <h1><?= $_SESSION['first_name'] ?>'s Profile</h1>
         <div class="dashboard-container">
 
             <?php include('../../components/profile_dashboard_side_nav.php'); ?>

@@ -209,6 +209,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+    <h1>Staff Dashboard</h1>
     <?php include('../../../../components/header_navigation_bar.php'); ?>
 
     <main>

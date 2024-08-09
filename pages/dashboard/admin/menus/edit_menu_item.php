@@ -208,6 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include('../../../../components/header_navigation_bar.php'); ?>
 
     <main>
+        <h1>Admin Dashboard</h1>
         <div class="dashboard-container">
 
             <?php include('../../../../components/admin_dashboard_side_nav.php'); ?>

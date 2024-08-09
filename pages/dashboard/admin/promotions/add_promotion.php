@@ -80,6 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+    <h1>Admin Dashboard</h1>
     <?php include('../../../../components/header_navigation_bar.php'); ?>
 
     <main>

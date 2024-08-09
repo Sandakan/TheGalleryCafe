@@ -48,7 +48,7 @@ $data = mysqli_fetch_assoc($result);
     <?php include('../../../components/header_navigation_bar.php'); ?>
 
     <main>
-        <!-- <h1>Staff Dashboard</h1> -->
+        <h1>Staff Dashboard</h1>
         <div class="dashboard-container">
             <?php include('../../../components/staff_dashboard_side_nav.php'); ?>
 

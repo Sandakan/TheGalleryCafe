@@ -61,6 +61,7 @@ $result = mysqli_query($conn, $query);
 </head>
 
 <body>
+    <h1>Admin Dashboard</h1>
     <?php include('../../../../components/header_navigation_bar.php'); ?>
 
     <main>

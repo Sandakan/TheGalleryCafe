@@ -1,6 +1,15 @@
 main > h1 {
-	font-size: 2rem;
+	font-size: 1.5rem;
 	font-weight: 600;
+	padding: 1rem 2rem;
+	margin-bottom: 1rem;
+	/* border-bottom: 5px solid var(--primary-highlight-color);
+	border-bottom: 5px solid var(--secondary-background-color); */
+	background-color: var(--secondary-background-color);
+	/* background-color: var(--primary-highlight-color); */
+	/* background-color: var(--primary-font-color);
+	color: var(--secondary-font-color); */
+	border-radius: 10rem;
 }
 
 .dashboard-container {

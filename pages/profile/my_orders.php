@@ -26,7 +26,7 @@ $BASE_URL = BASE_URL;
     <?php include('../../components/header_navigation_bar.php'); ?>
 
     <main>
-
+        <h1><?= $_SESSION['user_first_name'] ?>'s Profile</h1>
         <div class="dashboard-container">
 
             <?php include('../../components/profile_dashboard_side_nav.php'); ?>

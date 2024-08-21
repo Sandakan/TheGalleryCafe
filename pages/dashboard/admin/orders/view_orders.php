@@ -61,10 +61,10 @@ $result = mysqli_query($conn, $query);
 </head>
 
 <body>
-    <h1>Admin Dashboard</h1>
     <?php include('../../../../components/header_navigation_bar.php'); ?>
 
     <main>
+        <h1>Admin Dashboard</h1>
         <div class="dashboard-container">
 
             <?php include('../../../../components/admin_dashboard_side_nav.php'); ?>

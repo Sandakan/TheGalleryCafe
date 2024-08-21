@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="password">Password *</label>
                     <input type="password" name="password" id="password" placeholder="MySuperSecretPassword" required />
                     <span class="error-message"><?php echo $password_error ?></span>
-                    <div class="forget-password-link-container"><a href="./forgot-password.php">Did you forget your password?</a></div>
+                    <!-- <div class="forget-password-link-container"><a href="./forgot-password.php">Did you forget your password?</a></div> -->
                 </div>
 
                 <div class="login-form-actions-container">
